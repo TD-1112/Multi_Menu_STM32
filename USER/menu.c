@@ -135,6 +135,9 @@ void select_menu(uint8_t menu)
     uint8_t dot_state = 0; 
     uint32_t last_animation_time = 0;
     
+    // Auto-exit timer for calibration menus
+    uint32_t calib_start_time = millis();
+    
     // Visual feedback variables
     uint8_t progress_indicator = 0;
     
@@ -156,7 +159,7 @@ void select_menu(uint8_t menu)
             OLED_ShowString(0, 2, "Please wait");
             break;
         case 2:
-            OLED_ShowString(0, 0, "Debug MPU");
+            OLED_ShowString(20, 0, "Debug MPU");
             OLED_ShowString(0, 1, "Accel: 0.1g" );
             OLED_ShowString(0, 2, "Gyro: 0.1 deg/s");
             break;
@@ -172,10 +175,16 @@ void select_menu(uint8_t menu)
     
     reset_status();
     
-    // Wait in this menu until button 3 is held for 1 second
+    // Wait in this menu until button 3 is held for 1 second or auto-exit timer expires
     while(1) {
         check_status();
         uint32_t current_time = millis();
+        
+        // Auto-exit for calibration menus (cases 0 and 1)
+        if((menu == 0 || menu == 1) && (current_time - calib_start_time >= CALIB_AUTO_EXIT_TIME)) {
+            // Auto-exit after timer expires
+            break;
+        }
         
         // LED menu navigation handling
         if(menu == 3) {
@@ -316,6 +325,13 @@ void select_menu(uint8_t menu)
             
             // Move to next state
             dot_state = (dot_state + 1) % 4; // Cycle through 0,1,2,3
+            
+            // Optional: you could add a countdown indicator here
+            // For example: show "5...", "4...", etc.
+            uint8_t seconds_left = (CALIB_AUTO_EXIT_TIME - (current_time - calib_start_time)) / 1000 + 1;
+            char countdown[5];
+            sprintf(countdown, "%ds", seconds_left);
+            OLED_ShowString(0, 4, countdown);
         }
     }
     

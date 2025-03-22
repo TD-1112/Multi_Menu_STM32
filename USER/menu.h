@@ -8,6 +8,7 @@
 #define LONG_PRESS_DURATION  1000  // Long press detection time in milliseconds
 #define UPDATE_INTERVAL      100   // Display update interval in milliseconds
 #define ANIMATION_INTERVAL   500   // Dot animation interval in milliseconds
+#define CALIB_AUTO_EXIT_TIME 5000  // Calibration auto-exit time (5 seconds)
 
 // LED menu configuration
 #define LED_MAX              6     // Total number of LEDs
