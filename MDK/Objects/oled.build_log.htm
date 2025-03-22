@@ -26,449 +26,81 @@ Project File Date:  03/22/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Rebuild target 'oled'
-../USER/i2c.c(126): warning: no newline at end of file [-Wnewline-eof]
+Build target 'oled'
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(7): warning: In file included from...
+../USER/i2c.h(4): warning: In file included from...
+../USER/define.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(8): warning: In file included from...
+../USER/button.h(5): warning: In file included from...
+../USER/define.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(9): warning: In file included from...
+../USER/oled.h(4): warning: In file included from...
+../USER/define.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(11): warning: In file included from...
+../USER/debug.h(4): warning: In file included from...
+../USER/define.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(11): warning: In file included from...
+../USER/debug.h(14): warning: no newline at end of file [-Wnewline-eof]
+#endif 
+       ^
+../USER/menu.c(1): warning: In file included from...
+../USER/menu.h(4): warning: In file included from...
+../USER/define.h(15): warning: no newline at end of file [-Wnewline-eof]
+#endif
+      ^
+../USER/menu.c(325): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-1 warning generated.
-compiling i2c.c...
-../USER/main.c(13): warning: no previous extern declaration for non-static variable 'flag' [-Wmissing-variable-declarations]
-uint8_t flag = 0;
-        ^
-../USER/main.c(13): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint8_t flag = 0;
-^
-../USER/main.c(91): warning: no newline at end of file [-Wnewline-eof]
-}
- ^
-2 warnings generated.
-compiling main.c...
-compiling button.c...
-compiling tim2.c...
-compiling stm32f10x_gpio.c...
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/src/misc.c(131): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
-    NVIC->IP[NVIC_InitStruct->NVIC_IRQChannel] = tmppriority;
-                                               ~ ^~~~~~~~~~~
-1 warning generated.
-compiling misc.c...
-compiling uart.c...
-../USER/oled.c(2): warning: In file included from...
-../USER/font.h(7): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00,// sp
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(8): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x00, 0x2f, 0x00, 0x00,// !
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(9): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x07, 0x00, 0x07, 0x00,// "
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(10): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x14, 0x7f, 0x14, 0x7f, 0x14,// #
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(11): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x24, 0x2a, 0x7f, 0x2a, 0x12,// $
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(12): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x62, 0x64, 0x08, 0x13, 0x23,// %
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(13): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x36, 0x49, 0x55, 0x22, 0x50,// &
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(14): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x05, 0x03, 0x00, 0x00,// '
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(15): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x1c, 0x22, 0x41, 0x00,// (
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(16): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x41, 0x22, 0x1c, 0x00,// )
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(17): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x14, 0x08, 0x3E, 0x08, 0x14,// *
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(18): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x08, 0x08, 0x3E, 0x08, 0x08,// +
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(19): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x00, 0xA0, 0x60, 0x00,// ,
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(20): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x08, 0x08, 0x08, 0x08, 0x08,// -
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(21): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x60, 0x60, 0x00, 0x00,// .
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(22): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x20, 0x10, 0x08, 0x04, 0x02,// /
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(23): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3E, 0x51, 0x49, 0x45, 0x3E,// 0
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(24): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x42, 0x7F, 0x40, 0x00,// 1
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(25): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x42, 0x61, 0x51, 0x49, 0x46,// 2
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(26): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x21, 0x41, 0x45, 0x4B, 0x31,// 3
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(27): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x18, 0x14, 0x12, 0x7F, 0x10,// 4
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(28): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x27, 0x45, 0x45, 0x45, 0x39,// 5
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(29): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3C, 0x4A, 0x49, 0x49, 0x30,// 6
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(30): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x01, 0x71, 0x09, 0x05, 0x03,// 7
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(31): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x36, 0x49, 0x49, 0x49, 0x36,// 8
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(32): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x06, 0x49, 0x49, 0x29, 0x1E,// 9
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(33): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x36, 0x36, 0x00, 0x00,// :
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(34): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x56, 0x36, 0x00, 0x00,// ;
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(35): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x08, 0x14, 0x22, 0x41, 0x00,// <
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(36): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x14, 0x14, 0x14, 0x14, 0x14,// =
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(37): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x41, 0x22, 0x14, 0x08,// >
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(38): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x02, 0x01, 0x51, 0x09, 0x06,// ?
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(39): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x32, 0x49, 0x59, 0x51, 0x3E,// @
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(40): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7C, 0x12, 0x11, 0x12, 0x7C,// A
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(41): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x49, 0x49, 0x49, 0x36,// B
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(42): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3E, 0x41, 0x41, 0x41, 0x22,// C
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(43): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x41, 0x41, 0x22, 0x1C,// D
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(44): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x49, 0x49, 0x49, 0x41,// E
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(45): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x09, 0x09, 0x09, 0x01,// F
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(46): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3E, 0x41, 0x49, 0x49, 0x7A,// G
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(47): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x08, 0x08, 0x08, 0x7F,// H
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(48): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x41, 0x7F, 0x41, 0x00,// I
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(49): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x20, 0x40, 0x41, 0x3F, 0x01,// J
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(50): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x08, 0x14, 0x22, 0x41,// K
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(51): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x40, 0x40, 0x40, 0x40,// L
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(52): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x02, 0x0C, 0x02, 0x7F,// M
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(53): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x04, 0x08, 0x10, 0x7F,// N
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(54): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3E, 0x41, 0x41, 0x41, 0x3E,// O
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(55): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x09, 0x09, 0x09, 0x06,// P
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(56): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3E, 0x41, 0x51, 0x21, 0x5E,// Q
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(57): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x09, 0x19, 0x29, 0x46,// R
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(58): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x46, 0x49, 0x49, 0x49, 0x31,// S
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(59): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x01, 0x01, 0x7F, 0x01, 0x01,// T
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(60): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3F, 0x40, 0x40, 0x40, 0x3F,// U
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(61): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x1F, 0x20, 0x40, 0x20, 0x1F,// V
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(62): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3F, 0x40, 0x38, 0x40, 0x3F,// W
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(63): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x63, 0x14, 0x08, 0x14, 0x63,// X
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(64): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x07, 0x08, 0x70, 0x08, 0x07,// Y
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(65): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x61, 0x51, 0x49, 0x45, 0x43,// Z
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(66): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x7F, 0x41, 0x41, 0x00,// [
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(67): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x55, 0x2A, 0x55, 0x2A, 0x55,// 55
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(68): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x41, 0x41, 0x7F, 0x00,// ]
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(69): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x04, 0x02, 0x01, 0x02, 0x04,// ^
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(70): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x40, 0x40, 0x40, 0x40, 0x40,// _
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(71): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x01, 0x02, 0x04, 0x00,// '
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(72): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x20, 0x54, 0x54, 0x54, 0x78,// a
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(73): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x48, 0x44, 0x44, 0x38,// b
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(74): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x38, 0x44, 0x44, 0x44, 0x20,// c
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(75): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x38, 0x44, 0x44, 0x48, 0x7F,// d
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(76): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x38, 0x54, 0x54, 0x54, 0x18,// e
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(77): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x08, 0x7E, 0x09, 0x01, 0x02,// f
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(78): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x18, 0xA4, 0xA4, 0xA4, 0x7C,// g
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(79): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x08, 0x04, 0x04, 0x78,// h
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(80): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x44, 0x7D, 0x40, 0x00,// i
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(81): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x40, 0x80, 0x84, 0x7D, 0x00,// j
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(82): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7F, 0x10, 0x28, 0x44, 0x00,// k
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(83): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x00, 0x41, 0x7F, 0x40, 0x00,// l
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(84): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7C, 0x04, 0x18, 0x04, 0x78,// m
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(85): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7C, 0x08, 0x04, 0x04, 0x78,// n
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(86): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x38, 0x44, 0x44, 0x44, 0x38,// o
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(87): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0xFC, 0x24, 0x24, 0x24, 0x18,// p
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(88): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x18, 0x24, 0x24, 0x18, 0xFC,// q
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(89): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x7C, 0x08, 0x04, 0x04, 0x08,// r
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(90): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x48, 0x54, 0x54, 0x54, 0x20,// s
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(91): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x04, 0x3F, 0x44, 0x40, 0x20,// t
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(92): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3C, 0x40, 0x40, 0x20, 0x7C,// u
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(93): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x1C, 0x20, 0x40, 0x20, 0x1C,// v
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(94): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x3C, 0x40, 0x30, 0x40, 0x3C,// w
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(95): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x44, 0x28, 0x10, 0x28, 0x44,// x
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(96): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x1C, 0xA0, 0xA0, 0xA0, 0x7C,// y
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(97): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x00, 0x44, 0x64, 0x54, 0x4C, 0x44,// z
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(98): warning: suggest braces around initialization of subobject [-Wmissing-braces]
-  0x14, 0x14, 0x14, 0x14, 0x14, 0x14,// horiz lines
-  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  {                                 }
-../USER/font.h(5): warning: no previous extern declaration for non-static variable 'F6x8' [-Wmissing-variable-declarations]
-const unsigned char  F6x8[][6] =                
-                     ^
-../USER/font.h(5): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-const unsigned char  F6x8[][6] =                
-      ^
-../USER/font.h(101): warning: no previous extern declaration for non-static variable 'F8X16' [-Wmissing-variable-declarations]
-const unsigned char  F8X16[] = {
-                     ^
-../USER/font.h(101): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-const unsigned char  F8X16[] = {
-      ^
-../USER/font.h(201): warning: no previous extern declaration for non-static variable 'Hzk' [-Wmissing-variable-declarations]
-const unsigned char  Hzk[][32]={
-                     ^
-../USER/font.h(201): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-const unsigned char  Hzk[][32]={
-      ^
-95 warnings generated.
-compiling oled.c...
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/src/stm32f10x_i2c.c(22): warning: In file included from...
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_i2c.h(49): warning: padding size of 'I2C_InitTypeDef' with 2 bytes to alignment boundary [-Wpadded]
-typedef struct
-        ^
-1 warning generated.
-compiling stm32f10x_i2c.c...
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/src/stm32f10x_usart.c(22): warning: In file included from...
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc\stm32f10x_usart.h(49): warning: padding size of 'USART_InitTypeDef' with 2 bytes to alignment boundary [-Wpadded]
-typedef struct
-        ^
-C:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/src/stm32f10x_usart.c(1043): warning: implicit conversion loses integer precision: 'int' to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-  itmask = ((uint16_t)0x01 << (uint16_t)bitpos);
-         ~  ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
-2 warnings generated.
-compiling stm32f10x_usart.c...
-compiling stm32f10x_rcc.c...
-assembling startup_stm32f10x_md.s...
-RTE/Device/STM32F103C8/system_stm32f10x.c(166): warning: no previous extern declaration for non-static variable 'AHBPrescTable' [-Wmissing-variable-declarations]
-__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+../USER/menu.c(139): warning: unused variable 'progress_indicator' [-Wunused-variable]
+    uint8_t progress_indicator = 0;
             ^
-RTE/Device/STM32F103C8/system_stm32f10x.c(166): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-__I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
-    ^
-1 warning generated.
-compiling system_stm32f10x.c...
+../USER/menu.c(4): warning: no previous extern declaration for non-static variable 'flag_stt' [-Wmissing-variable-declarations]
+flag_status flag_stt;
+            ^
+../USER/menu.c(4): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+flag_status flag_stt;
+^
+../USER/menu.c(5): warning: no previous extern declaration for non-static variable 'stt_1' [-Wmissing-variable-declarations]
+uint16_t stt_1 ;
+         ^
+../USER/menu.c(5): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t stt_1 ;
+^
+../USER/menu.c(6): warning: no previous extern declaration for non-static variable 'stt_2' [-Wmissing-variable-declarations]
+uint16_t stt_2 ;
+         ^
+../USER/menu.c(6): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t stt_2 ;
+^
+../USER/menu.c(7): warning: no previous extern declaration for non-static variable 'stt_3' [-Wmissing-variable-declarations]
+uint16_t stt_3 ;
+         ^
+../USER/menu.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t stt_3 ;
+^
+12 warnings generated.
+compiling menu.c...
 linking...
-Program Size: Code=2468 RO-data=804 RW-data=0 ZI-data=1640  
-".\Objects\oled.axf" - 0 Error(s), 103 Warning(s).
+Program Size: Code=3444 RO-data=932 RW-data=8 ZI-data=1664  
+".\Objects\oled.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -501,16 +133,16 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
       Source file:   Device\Source\system_stm32f10x.c
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Include file:  RTE_Driver\Config\RTE_Device.h
 
    * Component: Keil::Device:StdPeriph Drivers:Framework:3.6.0
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
       Source file:   Device\StdPeriph_Driver\src\misc.c
       Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
       Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
       Include file:  Device\StdPeriph_Driver\inc\misc.h
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO:3.6.0
@@ -528,7 +160,7 @@ Package Vendor: Keil
    * Component: Keil::Device:StdPeriph Drivers:USART:3.6.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -5,6 +5,8 @@
 ".\objects\i2c.o"
 ".\objects\tim2.o"
 ".\objects\button.o"
+".\objects\debug.o"
+".\objects\menu.o"
 ".\objects\misc.o"
 ".\objects\stm32f10x_gpio.o"
 ".\objects\stm32f10x_i2c.o"

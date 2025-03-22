@@ -1,8 +1,8 @@
 #ifndef __BUTTON__
 #define __BUTTON__
 
-#include "stm32f10x.h"                  // Device header
 
+#include "define.h"
 
 #define BUTTON_PORT    GPIOB
 #define BUTTON_1    GPIO_Pin_3

@@ -1,5 +1,5 @@
 #include "oled.h"
-#include "font.h" 
+#include "font.h"
 
 void OLED_WR_Byte(unsigned char dat,unsigned char cmd)
 {
@@ -21,7 +21,6 @@ void OLED_Set_Pos(unsigned char x, unsigned char y)
 }   	  
 
 
-
 void OLED_Display_On(void)
 {
   OLED_WR_Byte(0X8D,OLED_CMD);  
@@ -29,15 +28,12 @@ void OLED_Display_On(void)
   OLED_WR_Byte(0XAF,OLED_CMD); 
 }
 
-
 void OLED_Display_Off(void)
 {
   OLED_WR_Byte(0X8D,OLED_CMD);  
   OLED_WR_Byte(0X10,OLED_CMD);  
   OLED_WR_Byte(0XAE,OLED_CMD);  
 }		   			 
-
-
 
 void OLED_Clear(void)  
 {  
@@ -50,7 +46,6 @@ void OLED_Clear(void)
       for(n=0;n<128;n++)OLED_WR_Byte(0,OLED_DATA); 
     }
 }
-
 
 void OLED_ShowChar(unsigned char x,unsigned char y,unsigned char chr)
 {      	
@@ -68,12 +63,11 @@ void OLED_ShowChar(unsigned char x,unsigned char y,unsigned char chr)
     }
   else  
     {	
-      OLED_Set_Pos(x,y+1); 
+      OLED_Set_Pos(x,y); 
       for(i=0;i<6;i++)
       OLED_WR_Byte(F6x8[c][i],OLED_DATA);
     }
 }
-
 
 unsigned int oled_pow(unsigned char m,unsigned char n)
 {
@@ -82,26 +76,10 @@ unsigned int oled_pow(unsigned char m,unsigned char n)
   return result;
 }
 
-
-void OLED_ShowNum(unsigned char x,unsigned char y,unsigned int num,unsigned char len,unsigned char size2)
+void OLED_ShowNum(unsigned char x,unsigned char y,uint16_t num)
 {         	
-  unsigned char t,temp; 
-  unsigned char enshow=0;		
-  for(t=0;t<len;t++)
-    {
-      temp=(num/oled_pow(10,len-t-1))%10;
-      if(enshow==0&&t<(len-1)) 
-        {
-          if(temp==0) 
-            {
-              OLED_ShowChar(x+(size2/2)*t,y,' ');
-              continue; 
-            }else enshow=1; 
-        }
-      OLED_ShowChar(x+(size2/2)*t,y,temp+'0'); 
-    }
-} 
 
+} 
 
 void OLED_ShowString(unsigned char x,unsigned char y,char *chr)
 {
@@ -114,8 +92,6 @@ void OLED_ShowString(unsigned char x,unsigned char y,char *chr)
         j++;
     }
 }
-
-
 
 void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[])
 { 	
@@ -134,8 +110,7 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
         }
     }
 } 
-
-			    
+   
 void OLED_Init(void)
 {
   IIC_GPIO_Init();				
@@ -185,7 +160,6 @@ void OLED_Init(void)
   OLED_Clear();        
   OLED_Set_Pos(0,0); 	 
 }  
-
 
 void OLED_Scroll(void)
 {

@@ -1,4 +1,4 @@
-./objects/i2c.o: ..\USER\i2c.c ..\USER\i2c.h \
+./objects/i2c.o: ..\USER\i2c.c ..\USER\i2c.h ..\USER\define.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h \
   RTE\_oled\RTE_Components.h \
   C:\Users\thang\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm3.h \
@@ -16,4 +16,6 @@
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
   ..\USER\tim2.h \
-  C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_exti.h
+  C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_exti.h \
+  ..\USER\button.h ..\USER\oled.h ..\USER\uart.h ..\USER\debug.h \
+  ..\USER\menu.h

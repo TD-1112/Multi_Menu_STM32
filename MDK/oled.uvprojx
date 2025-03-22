@@ -413,6 +413,21 @@
               <FileType>5</FileType>
               <FilePath>..\USER\button.h</FilePath>
             </File>
+            <File>
+              <FileName>debug.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\debug.h</FilePath>
+            </File>
+            <File>
+              <FileName>define.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\define.h</FilePath>
+            </File>
+            <File>
+              <FileName>menu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\menu.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -447,6 +462,16 @@
               <FileName>button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>menu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\menu.c</FilePath>
             </File>
           </Files>
         </Group>

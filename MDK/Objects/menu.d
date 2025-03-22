@@ -1,4 +1,4 @@
-./objects/oled.o: ..\USER\oled.c ..\USER\oled.h ..\USER\define.h \
+./objects/menu.o: ..\USER\menu.c ..\USER\menu.h ..\USER\define.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h \
   RTE\_oled\RTE_Components.h \
   C:\Users\thang\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\core_cm3.h \
@@ -17,5 +17,5 @@
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
   ..\USER\tim2.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_exti.h \
-  ..\USER\i2c.h ..\USER\button.h ..\USER\uart.h ..\USER\debug.h \
-  ..\USER\menu.h ..\USER\font.h
+  ..\USER\i2c.h ..\USER\button.h ..\USER\oled.h ..\USER\uart.h \
+  ..\USER\debug.h

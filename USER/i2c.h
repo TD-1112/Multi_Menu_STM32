@@ -1,8 +1,7 @@
 #ifndef __I2C__
 #define __I2C__
 
-#include "stm32f10x.h"                  // Device header
-#include "tim2.h"
+#include "define.h"
 
 #define IIC_SCL_PORT    GPIOB
 #define IIC_SCL_PINS    GPIO_Pin_8
