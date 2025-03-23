@@ -16,4 +16,6 @@
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
   ..\USER\delay.h ..\USER\i2c.h ..\USER\button.h ..\USER\oled.h \
-  ..\USER\uart.h ..\USER\menu.h
+  ..\USER\uart.h ..\USER\menu.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\USER\MPU6050.h \
+  ..\USER\i2c_2.h

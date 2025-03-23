@@ -10,6 +10,9 @@
 #include "uart.h"
 #include "debug.h"
 #include "menu.h"
+#include "math.h"
+#include "MPU6050.h"
+#include "i2c_2.h"
 
 
 #endif

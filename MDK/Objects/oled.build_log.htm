@@ -22,14 +22,31 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Keil_v5\Project\oled\MDK\oled.uvprojx
-Project File Date:  03/23/2025
+Project File Date:  03/24/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.14', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'oled'
+Rebuild target 'oled'
+compiling maths.c...
+compiling delay.c...
+compiling i2c.c...
+compiling MPU6050.c...
+compiling button.c...
+compiling uart.c...
+compiling main.c...
+compiling debug.c...
+compiling oled.c...
+compiling i2c_2.c...
 compiling menu.c...
+compiling misc.c...
+compiling stm32f10x_gpio.c...
+assembling startup_stm32f10x_md.s...
+compiling stm32f10x_rcc.c...
+compiling system_stm32f10x.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_usart.c...
 linking...
-Program Size: Code=5350 RO-data=918 RW-data=16 ZI-data=1680  
+Program Size: Code=8722 RO-data=310 RW-data=44 ZI-data=1692  
 ".\Objects\oled.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -63,34 +80,34 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.4.0
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\system_stm32f10x.c
-      Include file:  RTE_Driver\Config\RTE_Device.h
       Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
+      Source file:   Device\Source\system_stm32f10x.c
+      Include file:  RTE_Driver\Config\RTE_Device.h
 
    * Component: Keil::Device:StdPeriph Drivers:Framework:3.6.0
       Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
-      Source file:   Device\StdPeriph_Driver\src\misc.c
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
       Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
       Include file:  Device\StdPeriph_Driver\inc\misc.h
+      Source file:   Device\StdPeriph_Driver\src\misc.c
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO:3.6.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_gpio.c
 
    * Component: Keil::Device:StdPeriph Drivers:I2C:3.6.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_i2c.c
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_i2c.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_i2c.c
 
    * Component: Keil::Device:StdPeriph Drivers:RCC:3.6.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_rcc.c
 
    * Component: Keil::Device:StdPeriph Drivers:USART:3.6.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
-Build Time Elapsed:  00:00:01
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
