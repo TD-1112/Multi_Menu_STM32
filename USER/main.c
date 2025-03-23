@@ -7,6 +7,7 @@ int main(void)
 		Button_Init();
     OLED_Init();  
     OLED_Clear(); 
+    float calibrated_angle = 0;
     while(1)
     {
     uint16_t value1 = 1234;
@@ -15,7 +16,7 @@ int main(void)
     uint16_t value4 = 1123;
     uint16_t value5 = 1355;
     uint16_t value6 = 1780;
-    float angle = 90.00;
+    float angle = 85.00;
     Main_Menu(value1, value2, value3, value4, value5, value6,angle); 
     //Update_MPU(angle);
     }

@@ -256,7 +256,7 @@ void Handle_Calibration_Navigation(uint8_t *calib_cursor_pos, uint8_t max_pos)
         flag_stt.flag_1 = 0;
     }
     
-    // Handle Up button (flag_stt.flag_2)
+    // Handle Up button (flag_stt.flag_2) {  // THÊM ĐIỀU KIỆN KIỂM TRA Ở ĐÂY
     if(flag_stt.flag_2) {
         if(*calib_cursor_pos == 0) {
             *calib_cursor_pos = max_pos - 1; // Wrap around
@@ -291,12 +291,11 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
     
     switch(menu) {
         case 0: // Calib MPU
-            OLED_ShowString(0, 0, "Calib MPU");
-            OLED_ShowString(30, 1, "Angle: ");
-            OLED_ShowNum(90, 1, angle);
-            OLED_ShowString(30, 2, "Save");
-            OLED_ShowString(30, 3, "Exit");
-            OLED_ShowString(0, 2, "->");  // Uncomment this line to draw initial cursor
+            OLED_ShowString(25, 0, "Angle:");
+            OLED_ShowString(25, 1, "Clear Value");
+            OLED_ShowString(25, 2, "Save Value");
+            OLED_ShowString(25, 3, "Exit");
+            OLED_ShowString(0, 1, "->");  // Initial cursor position on Clear
             break;
             
         case 1: // Calib LED
@@ -329,46 +328,82 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
         
         // Handle MPU calibration menu
         if(menu == 0) {
+            // Xử lý điều hướng cho 3 lựa chọn (Clear, Save, Exit)
+            Handle_Calibration_Navigation(&calib_cursor_pos, 3);  // Thay đổi từ 2 thành 3 vị trí
 
-            
-            // Check the position against the last saved position
+            // Kiểm tra vị trí con trỏ có thay đổi không
             if(calib_cursor_pos != last_calib_cursor_pos) {
-                // Clear BOTH possible cursor positions with 3 spaces
-                OLED_ShowString(0, 2, "   ");  // Use 3 spaces instead of 2
-                OLED_ShowString(0, 3, "   ");  // Use 3 spaces instead of 2
+                // Xóa các vị trí con trỏ cũ
+                OLED_ShowString(0, 1, "   ");
+                OLED_ShowString(0, 2, "   ");
+                OLED_ShowString(0, 3, "   ");
                 
-                // Draw complete cursor as a string (not character by character)
-                OLED_ShowString(0, 2 + calib_cursor_pos, "->");
+                // Vẽ con trỏ ở vị trí mới
+                OLED_ShowString(0, 1 + calib_cursor_pos, "->");
                 
-                // Update last known position
-                
+                // Cập nhật vị trí đã biết cuối cùng
                 last_calib_cursor_pos = calib_cursor_pos;
             }
-            // Handle navigation first
-            Handle_Calibration_Navigation(&calib_cursor_pos, 2);
 
-            // Handle selection
+            // Xử lý lựa chọn
             if(flag_stt.flag_3) {
                 if(calib_cursor_pos == 0) {
-                    // "Save" selected - Save calibration
+                    // "Clear" được chọn - Đặt lại góc về 0
+                    calibrated_angle = 0;
+                    
+                    // Hiển thị xác nhận
+                    OLED_Clear();
+                    OLED_ShowString(15, 2, "MPU Cleared!");
+                    delay_ms(1000);
+                    
+                    // Vẽ lại menu Calib MPU
+                    OLED_Clear();
+                    OLED_ShowString(25, 0, "Angle: ");
+                    OLED_ShowString(25, 1, "Clear Value");
+                    OLED_ShowString(25, 2, "Save Value");
+                    OLED_ShowString(25, 3, "Exit");
+                    OLED_ShowString(0, 1, "->");  // Reset cursor to Clear
+                    
+                    // Reset cursor position
+                    calib_cursor_pos = 0;
+                    last_calib_cursor_pos = 0;
+                    flag_stt.flag_3 = 0;
+                }
+                else if(calib_cursor_pos == 1) {
+                    // "Save" được chọn - Lưu góc hiện tại
                     calibrated_angle = angle;
                     
-                    // Show confirmation
+                    // Hiển thị xác nhận
                     OLED_Clear();
                     OLED_ShowString(15, 2, "MPU Calibrated!");
                     delay_ms(1000);
+                    
+                    // Vẽ lại menu Calib MPU
+                    OLED_Clear();
+                    OLED_ShowString(25, 0, "Angle: ");
+                    OLED_ShowString(25, 1, "Clear Value");
+                    OLED_ShowString(25, 2, "Save Value");
+                    OLED_ShowString(25, 3, "Exit");
+                    OLED_ShowString(0, 1, "->");  // Reset cursor to Clear
+                    
+                    // Reset cursor position
+                    calib_cursor_pos = 0;
+                    last_calib_cursor_pos = 0;
+                    flag_stt.flag_3 = 0;
                 }
-                // Exit for both Yes and No
-                break;
+                else if(calib_cursor_pos == 2) {
+                    // "Exit" được chọn - Quay lại menu chính
+                    break;
+                }
             }
             
-            // Update angle value periodically
+            // Cập nhật giá trị góc định kỳ
             if(current_time - last_update_time >= UPDATE_INTERVAL) {
                 last_update_time = current_time;
                 
-                // Update the angle display
-                OLED_ClearArea(90, 1, 5);
-                OLED_ShowNum(90, 1, angle);
+                // Cập nhật hiển thị góc
+                OLED_ClearArea(80, 0, 5);
+                OLED_ShowNum(80, 0, angle);
             }
         }
         
@@ -402,8 +437,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     OLED_ShowString(20, 0, "Calib LED");
                     OLED_ShowString(0, 1, "LED4: ");
                     OLED_ShowNum(40, 1, value_4);
-                    OLED_ShowString(15, 2, "Save");
-                    OLED_ShowString(15, 3, "Exit");
+                    OLED_ShowString(30, 2, "Save");
+                    OLED_ShowString(30, 3, "Exit");
                     OLED_ShowString(0, 2, "->");  // Initial cursor position
                     
                     // Reset cursor position for Yes/No selection
@@ -476,8 +511,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
             last_update_time = current_time;
             
             if(menu == 2) { // Debug MPU
-                OLED_ClearArea(50, 1, 6);
-                OLED_ShowNum(50, 1, angle);
+                OLED_ClearArea(70, 2, 6);  // Xóa vùng hiển thị giá trị hiện tại
+                OLED_ShowNum(70, 2, angle);
             } 
             else if(menu == 3) { // Debug LED
                 Update_Led(value_1, value_2, value_3, value_4, value_5, value_6, led_cursor_pos, 0);
@@ -568,14 +603,15 @@ void Update_MPU(float value)
 {
     static uint8_t first_draw = 1;
     
-    if(first_draw) {
-        // First time draw - draw all elements
-        OLED_ShowString(30, 0, "MPU Debug");
-        OLED_ShowString(0, 1, "Gyro: ");
-        first_draw = 0;
-    }
+    // Luôn vẽ lại toàn bộ nội dung khi vào menu Debug MPU
+    OLED_ShowString(30, 0, "MPU Debug");
+    OLED_ShowString(0, 1, "Calibrated:");
+    OLED_ShowString(0, 2, "Current:");
     
-    // Just update the value
-    OLED_ClearArea(50, 1, 6);  // Clear value area
-    OLED_ShowNum(50, 1, value);
+    // Cập nhật cả hai giá trị
+    OLED_ClearArea(90, 1, 6);  // Xóa vùng hiển thị giá trị đã hiệu chuẩn
+    OLED_ShowNum(90, 1, calibrated_angle);
+    
+    OLED_ClearArea(70, 2, 6);  // Xóa vùng hiển thị giá trị hiện tại
+    OLED_ShowNum(70, 2, value);
 }

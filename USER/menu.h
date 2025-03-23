@@ -6,7 +6,7 @@
 // Timing configuration defines
 #define DEBOUNCE_DELAY       50    // Button debounce time in milliseconds
 #define LONG_PRESS_DURATION  1000  // Long press detection time in milliseconds
-#define UPDATE_INTERVAL      100   // Display update interval in milliseconds
+#define UPDATE_INTERVAL      10   // Display update interval in milliseconds
 #define ANIMATION_INTERVAL   500   // Dot animation interval in milliseconds
 
 // LED menu configuration
