@@ -76,9 +76,29 @@ unsigned int oled_pow(unsigned char m,unsigned char n)
   return result;
 }
 
-void OLED_ShowNum(unsigned char x,unsigned char y,uint16_t num)
-{         	
+void OLED_ShowNum(unsigned char x, unsigned char y, uint16_t num)
+{
+  unsigned char x_pos = x;
+  if(num == 0) 
+  {
+    OLED_ShowChar(x_pos, y, '0');
+    return;
+  }
+  char number[10];  // Increased size to handle larger numbers
+  uint8_t length = 0;
+  
+  while(num)
+  {
+    number[length] = num % 10;
+    length++;
+    num = num / 10;
+  }
 
+  for(int i = length - 1; i >= 0; i--)
+  {
+    OLED_ShowChar(x_pos, y, '0' + number[i]); 
+    x_pos += 8;
+  }
 } 
 
 void OLED_ShowString(unsigned char x,unsigned char y,char *chr)
@@ -114,7 +134,7 @@ void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned 
 void OLED_Init(void)
 {
   IIC_GPIO_Init();				
-  Delay_ms(100);        
+  delay_ms(100);        
 
   OLED_WR_Byte(0xAE,OLED_CMD);	
   OLED_WR_Byte(0x2e,OLED_CMD);	

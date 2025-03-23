@@ -322,7 +322,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
@@ -404,14 +404,14 @@
               <FilePath>..\USER\i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tim2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\tim2.h</FilePath>
-            </File>
-            <File>
               <FileName>button.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\USER\button.h</FilePath>
+            </File>
+            <File>
+              <FileName>menu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\menu.h</FilePath>
             </File>
             <File>
               <FileName>debug.h</FileName>
@@ -424,9 +424,9 @@
               <FilePath>..\USER\define.h</FilePath>
             </File>
             <File>
-              <FileName>menu.h</FileName>
+              <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\USER\menu.h</FilePath>
+              <FilePath>..\USER\delay.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -454,11 +454,6 @@
               <FilePath>..\USER\i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tim2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\tim2.c</FilePath>
-            </File>
-            <File>
               <FileName>button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\button.c</FilePath>
@@ -472,6 +467,11 @@
               <FileName>menu.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\menu.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\delay.c</FilePath>
             </File>
           </Files>
         </Group>

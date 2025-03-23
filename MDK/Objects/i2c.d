@@ -15,7 +15,5 @@
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h \
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
-  ..\USER\tim2.h \
-  C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_exti.h \
-  ..\USER\button.h ..\USER\oled.h ..\USER\uart.h ..\USER\debug.h \
-  ..\USER\menu.h
+  ..\USER\delay.h ..\USER\button.h ..\USER\oled.h ..\USER\uart.h \
+  ..\USER\debug.h ..\USER\menu.h

@@ -20,11 +20,17 @@ typedef struct {
     uint8_t flag_3;
 }flag_status;
 
-extern flag_status flag_stat;
+extern flag_status flag_stt;
 
-void check_status(void);
-void reset_status(void);
-void main_menu(void);
-void select_menu(uint8_t menu);
+void Check_Status(void);
+void Reset_Status(void);
+void Main_Menu( uint16_t value_1 , uint16_t value_2 , uint16_t value_3 , 
+                uint16_t value_4 , uint16_t value_5 , uint16_t value_6);
+//void Main_Menu(uint16_t value_1 , uint16_t value_2 , uint16_t value_3 , uint16_t value_4 , uint16_t value_5 , uint16_t value_6);
+void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t value_3, 
+    uint16_t value_4, uint16_t value_5, uint16_t value_6);
+void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, 
+                uint16_t value_5, uint16_t value_6, uint8_t cursor_pos, uint8_t redraw_labels);
+void Update_MPU(float accel);
 
 #endif

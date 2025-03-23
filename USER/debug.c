@@ -28,9 +28,9 @@ void Blink_Times(uint8_t times)
     for(uint8_t i = 0; i < times; i++)
     {
         on();
-        Delay_ms(500);
+        delay_ms(500);
         off();
-        Delay_ms(500);
+        delay_ms(500);
     }
 }
 

@@ -1,12 +1,12 @@
 #include "menu.h"
-#include "tim2.h"  // Make sure to include this for millis()
 
 flag_status flag_stt;
+
 uint16_t stt_1 ;
 uint16_t stt_2 ;
 uint16_t stt_3 ;
 
-void check_status(void)
+void Check_Status(void)
 {
     static uint32_t last_debounce_time[3] = {0, 0, 0}; 
     static uint8_t button_state[3] = {1, 1, 1}; 
@@ -52,15 +52,17 @@ void check_status(void)
     }
 }
 
-void reset_status(void)
+void Reset_Status(void)
 {
     flag_stt.flag_1 = 0;
     flag_stt.flag_2 = 0;
     flag_stt.flag_3 = 0;
 }
 
-void main_menu(void)
+void Main_Menu( uint16_t value_1 , uint16_t value_2 , uint16_t value_3 , 
+                uint16_t value_4 , uint16_t value_5 , uint16_t value_6)
 {
+    Check_Status();
     static uint8_t cursor_pos = 0;
     static uint8_t last_drawn_pos = 255; // Initialize to invalid position
     uint8_t menu_items = 4; // Changed from 3 to 4 to include all menu options
@@ -111,9 +113,8 @@ void main_menu(void)
     
     if(flag_stt.flag_3)
     {
-        // Call select_menu with the current cursor position
-        select_menu(cursor_pos);
-        
+        // Call Select_Menu with the current cursor position
+        Select_Menu(cursor_pos, value_1, value_2, value_3, value_4, value_5, value_6);
         // Force redraw of menu when we return
         menu_initialized = 0; 
         last_drawn_pos = 255;
@@ -123,7 +124,8 @@ void main_menu(void)
 }
 
 
-void select_menu(uint8_t menu)
+void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t value_3, 
+                uint16_t value_4, uint16_t value_5, uint16_t value_6)
 {
     uint32_t button_press_start = 0;
     uint8_t is_button_held = 0;
@@ -165,19 +167,27 @@ void select_menu(uint8_t menu)
             break;
         case 3:
             // Draw first page of LEDs (LEDs 1-4)
-            OLED_ShowString(15, 0, "LED1: OFF");
-            OLED_ShowString(15, 1, "LED2: OFF");
-            OLED_ShowString(15, 2, "LED3: OFF");
-            OLED_ShowString(15, 3, "LED4: OFF");
+            OLED_ShowString(15, 0, "LED1:");
+            OLED_ShowNum(60, 0, value_1);
+            
+            OLED_ShowString(15, 1, "LED2:");
+            OLED_ShowNum(60, 1, value_2);
+            
+            OLED_ShowString(15, 2, "LED3:");
+            OLED_ShowNum(60, 2, value_3);
+            
+            OLED_ShowString(15, 3, "LED4:");
+            OLED_ShowNum(60, 3, value_4);
+            
             OLED_ShowString(0, 0, "->"); // Initial cursor position
             break;
     }
     
-    reset_status();
+    Reset_Status();
     
     // Wait in this menu until button 3 is held for 1 second or auto-exit timer expires
     while(1) {
-        check_status();
+        Check_Status();
         uint32_t current_time = millis();
         
         // Auto-exit for calibration menus (cases 0 and 1)
@@ -207,15 +217,25 @@ void select_menu(uint8_t menu)
                     OLED_Clear();
                     
                     if(led_page == 0) {
-                        // Show LEDs 1-4
-                        OLED_ShowString(15, 0, "LED1: OFF");
-                        OLED_ShowString(15, 1, "LED2: OFF");
-                        OLED_ShowString(15, 2, "LED3: OFF");
-                        OLED_ShowString(15, 3, "LED4: OFF");
+                        // Show LEDs 1-4 with their values
+                        OLED_ShowString(15, 0, "LED1:");
+                        OLED_ShowNum(60, 0, value_1);
+                        
+                        OLED_ShowString(15, 1, "LED2:");
+                        OLED_ShowNum(60, 1, value_2);
+                        
+                        OLED_ShowString(15, 2, "LED3:");
+                        OLED_ShowNum(60, 2, value_3);
+                        
+                        OLED_ShowString(15, 3, "LED4:");
+                        OLED_ShowNum(60, 3, value_4);
                     } else {
-                        // Show LEDs 5-6
-                        OLED_ShowString(15, 0, "LED5: OFF");
-                        OLED_ShowString(15, 1, "LED6: OFF");
+                        // Show LEDs 5-6 with their values
+                        OLED_ShowString(15, 0, "LED5:");
+                        OLED_ShowNum(60, 0, value_5);
+                        
+                        OLED_ShowString(15, 1, "LED6:");
+                        OLED_ShowNum(60, 1, value_6);
                     }
                 }
                 
@@ -246,15 +266,25 @@ void select_menu(uint8_t menu)
                     OLED_Clear();
                     
                     if(led_page == 0) {
-                        // Show LEDs 1-4
-                        OLED_ShowString(15, 0, "LED1: OFF");
-                        OLED_ShowString(15, 1, "LED2: OFF");
-                        OLED_ShowString(15, 2, "LED3: OFF");
-                        OLED_ShowString(15, 3, "LED4: OFF");
+                        // Show LEDs 1-4 with their values
+                        OLED_ShowString(15, 0, "LED1:");
+                        OLED_ShowNum(60, 0, value_1);
+                        
+                        OLED_ShowString(15, 1, "LED2:");
+                        OLED_ShowNum(60, 1, value_2);
+                        
+                        OLED_ShowString(15, 2, "LED3:");
+                        OLED_ShowNum(60, 2, value_3);
+                        
+                        OLED_ShowString(15, 3, "LED4:");
+                        OLED_ShowNum(60, 3, value_4);
                     } else {
-                        // Show LEDs 5-6
-                        OLED_ShowString(15, 0, "LED5: OFF");
-                        OLED_ShowString(15, 1, "LED6: OFF");
+                        // Show LEDs 5-6 with their values
+                        OLED_ShowString(15, 0, "LED5:");
+                        OLED_ShowNum(60, 0, value_5);
+                        
+                        OLED_ShowString(15, 1, "LED6:");
+                        OLED_ShowNum(60, 1, value_6);
                     }
                 }
                 
@@ -296,13 +326,28 @@ void select_menu(uint8_t menu)
                 // Update MPU debug data here
             } 
             else if(menu == 3) { // Debug LED
-                // Update LED status here - use actual LED states
-                // Example: 
-                // if(led_page == 0) {
-                //     OLED_ShowString(70, 1, LED1_State ? "ON " : "OFF");
-                //     OLED_ShowString(70, 2, LED2_State ? "ON " : "OFF");
-                //     // etc.
-                // }
+                // Update LED values periodically
+                if(led_page == 0) {
+                    // Update LEDs 1-4
+                    OLED_ShowString(60, 0, "    ");
+                    OLED_ShowNum(60, 0, value_1);
+                    
+                    OLED_ShowString(60, 1, "    ");
+                    OLED_ShowNum(60, 1, value_2);
+                    
+                    OLED_ShowString(60, 2, "    ");
+                    OLED_ShowNum(60, 2, value_3);
+                    
+                    OLED_ShowString(60, 3, "    ");
+                    OLED_ShowNum(60, 3, value_4);
+                } else {
+                    // Update LEDs 5-6
+                    OLED_ShowString(60, 0, "    ");
+                    OLED_ShowNum(60, 0, value_5);
+                    
+                    OLED_ShowString(60, 1, "    ");
+                    OLED_ShowNum(60, 1, value_6);
+                }
             }
         }
         
@@ -325,17 +370,61 @@ void select_menu(uint8_t menu)
             
             // Move to next state
             dot_state = (dot_state + 1) % 4; // Cycle through 0,1,2,3
-            
-            // Optional: you could add a countdown indicator here
-            // For example: show "5...", "4...", etc.
-            uint8_t seconds_left = (CALIB_AUTO_EXIT_TIME - (current_time - calib_start_time)) / 1000 + 1;
-            char countdown[5];
-            sprintf(countdown, "%ds", seconds_left);
-            OLED_ShowString(0, 4, countdown);
         }
     }
     
     // Handle transition back to main menu
     OLED_Clear();
-    reset_status();
+    Reset_Status();
+}
+
+void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, 
+                uint16_t value_5, uint16_t value_6, uint8_t cursor_pos, uint8_t redraw_labels)
+{
+    uint8_t current_page = cursor_pos / 4; // 4 LEDs per page
+    uint8_t display_row = cursor_pos % 4;
+    
+    // If requested, redraw the labels (e.g., when page changes)
+    if(redraw_labels) {
+        if(current_page == 0) {
+            // Page 0: LEDs 1-4
+            OLED_ShowString(15, 0, "LED1 -- ");
+            OLED_ShowString(15, 1, "LED2 -- ");
+            OLED_ShowString(15, 2, "LED3 -- ");
+            OLED_ShowString(15, 3, "LED4 -- ");
+        } else {
+            // Page 1: LEDs 5-6
+            OLED_ShowString(15, 0, "LED5 -- ");
+            OLED_ShowString(15, 1, "LED6 -- ");
+        }
+    }
+    
+    // Clear all cursor positions and redraw at current position
+    for(uint8_t i = 0; i < (current_page == 0 ? 4 : 2); i++) {
+        OLED_ShowString(0, i, "  ");
+    }
+    OLED_ShowString(0, display_row, "->");
+    
+    // Clear only the value areas and update with new values
+    if(current_page == 0) {
+        // Page 0: Update LEDs 1-4
+        OLED_ShowString(80, 0, "     ");
+        OLED_ShowNum(80, 0, value_1);
+        
+        OLED_ShowString(80, 1, "     ");
+        OLED_ShowNum(80, 1, value_2);
+        
+        OLED_ShowString(80, 2, "     ");
+        OLED_ShowNum(80, 2, value_3);
+        
+        OLED_ShowString(80, 3, "     ");
+        OLED_ShowNum(80, 3, value_4);
+    } else {
+        // Page 1: Update LEDs 5-6
+        OLED_ShowString(80, 0, "     ");
+        OLED_ShowNum(80, 0, value_5);
+        
+        OLED_ShowString(80, 1, "     ");
+        OLED_ShowNum(80, 1, value_6);
+    }
 }

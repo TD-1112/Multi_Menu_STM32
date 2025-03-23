@@ -3,7 +3,7 @@
 
 
 #include "stm32f10x.h"
-#include "tim2.h"
+#include "delay.h"
 #include "i2c.h"
 #include "button.h"
 #include "oled.h"
