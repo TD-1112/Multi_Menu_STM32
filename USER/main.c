@@ -15,8 +15,9 @@ int main(void)
     uint16_t value4 = 1123;
     uint16_t value5 = 1355;
     uint16_t value6 = 1780;
-    Main_Menu(value1, value2, value3, value4, value5, value6); 
-      //Main_Menu();
+    float angle = 90.00;
+    Main_Menu(value1, value2, value3, value4, value5, value6,angle); 
+    //Update_MPU(angle);
     }
 }
 
