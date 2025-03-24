@@ -98,8 +98,6 @@ float MPU6050_Get_Yaw(int16_t value_reduction)
 		
 		yaw -= ((float)((int16_t)(((uint16_t)data[0]<<8) | (uint16_t)data[1])) - gyro_error[2]) * dt / 1000000.0 / gyro_LSB;
 	}
-	
-	
 	// calib yaw
 	if(value_reduction)
 	{

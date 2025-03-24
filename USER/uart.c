@@ -82,6 +82,7 @@ void USART1_Send_Hex(uint8_t num)
     if(temp > 9) {
         temp += 0x37;
     } else {
+		
         temp += 0x30;
     }
     USART1_Send_Char(temp);
