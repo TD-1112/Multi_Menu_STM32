@@ -637,8 +637,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                         switch(item) {
                             case 0: value = value_1; break;
                             case 1: value = value_2; break;
-                            case 2: value_3; break;
-                            case 3: value_4; break;
+                            case 2: value = value_3; break;
+                            case 3: value = value_4; break;
                             default: value = 0;
                         }
                         OLED_ShowNum(60, i, value);
