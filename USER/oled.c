@@ -101,6 +101,62 @@ void OLED_ShowNum(unsigned char x, unsigned char y, uint16_t num)
   }
 } 
 
+
+void OLED_ShowFloat(unsigned char x, unsigned char y, float num)
+{
+  unsigned char x_pos = x;
+  
+  // Xử lý số âm
+  if(num < 0) {
+    OLED_ShowChar(x_pos, y, '-');
+    x_pos += 8;
+    num = -num;
+  }
+  
+  // Lấy phần nguyên
+  int int_part = (int)num;
+  
+  // Hiển thị phần nguyên
+  if(int_part == 0) {
+    OLED_ShowChar(x_pos, y, '0');
+    x_pos += 8;
+  } else {
+    // Chuyển phần nguyên thành chuỗi số
+    char int_digits[10];
+    uint8_t length = 0;
+    
+    int temp = int_part;
+    while(temp > 0) {
+      int_digits[length++] = temp % 10;
+      temp /= 10;
+    }
+    
+    // Hiển thị từng chữ số của phần nguyên
+    for(int i = length - 1; i >= 0; i--) {
+      OLED_ShowChar(x_pos, y, '0' + int_digits[i]);
+      x_pos += 8;
+    }
+  }
+  
+  // Hiển thị dấu thập phân
+  OLED_ShowChar(x_pos, y, '.');
+  x_pos += 8;
+  
+  // Lấy và hiển thị 2 chữ số sau dấu thập phân
+  int decimal_part = (int)((num - int_part) * 100 + 0.5); // +0.5 để làm tròn
+  
+  // Đảm bảo hiển thị đủ 2 chữ số thập phân, kể cả khi là 0
+  if(decimal_part < 10) {
+    OLED_ShowChar(x_pos, y, '0'); // Thêm số 0 phía trước
+    x_pos += 8;
+    OLED_ShowChar(x_pos, y, '0' + decimal_part);
+  } else {
+    OLED_ShowChar(x_pos, y, '0' + (decimal_part / 10));
+    x_pos += 8;
+    OLED_ShowChar(x_pos, y, '0' + (decimal_part % 10));
+  }
+}
+
 void OLED_ShowString(unsigned char x,unsigned char y,char *chr)
 {
   unsigned char j=0; 

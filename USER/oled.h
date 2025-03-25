@@ -24,6 +24,7 @@ void OLED_Set_Pos(unsigned char x, unsigned char y);
 void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[]);
 void OLED_Scroll(void);
 void OLED_WR_Byte(unsigned char dat,unsigned char cmd);
+void OLED_ShowFloat(unsigned char x,unsigned char y,float num);
 unsigned int oled_pow(unsigned char m,unsigned char n);
 
 

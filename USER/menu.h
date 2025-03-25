@@ -6,7 +6,7 @@
 // Timing configuration defines
 #define DEBOUNCE_DELAY       50    // Button debounce time in milliseconds
 #define LONG_PRESS_DURATION  1000  // Long press detection time in milliseconds
-#define UPDATE_INTERVAL      10   // Display update interval in milliseconds
+#define UPDATE_INTERVAL      0   // Display update interval in milliseconds
 #define ANIMATION_INTERVAL   500   // Dot animation interval in milliseconds
 
 // LED menu configuration
@@ -27,14 +27,13 @@ extern uint16_t calibrated_leds[4];
 // Main functions
 void Check_Status(void);
 void Reset_Status(void);
-void Main_Menu(uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-               uint16_t value_4, uint16_t value_5, uint16_t value_6, float angle);
+void Main_Menu(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, float angle);
 void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-                uint16_t value_4, uint16_t value_5, uint16_t value_6, float angle);
+                uint16_t value_4, float angle);
 
 // Display update functions
 void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, 
-                uint16_t value_5, uint16_t value_6, uint8_t cursor_pos, uint8_t redraw_labels);
+                uint8_t show_calibrated, uint8_t led_cursor_pos);
 void Update_MPU(float value);
 
 // Helper functions for targeted screen clearing
@@ -46,12 +45,10 @@ void Update_Animation_Dots(uint32_t current_time, uint32_t *last_animation_time,
 
 // Button handling
 uint8_t Check_Long_Press(uint8_t button_state, uint32_t current_time, 
-                        uint32_t *button_press_start, uint8_t *is_button_held);
+                       uint32_t *button_press_start, uint8_t *is_button_held);
 
 // Navigation functions
-void Handle_LED_Navigation(uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-                          uint16_t value_4, uint16_t value_5, uint16_t value_6, 
-                          uint8_t *led_cursor_pos, uint8_t *led_page);
+void Handle_LED_Navigation(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, uint8_t *led_cursor_pos, uint8_t *led_page);
 
 // Calibration functions
 void Handle_Calibration_Navigation(uint8_t *calib_cursor_pos, uint8_t max_pos);

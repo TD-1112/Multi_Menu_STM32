@@ -1,10 +1,8 @@
 --cpu Cortex-M3
 ".\objects\main.o"
-".\objects\mpu6050.o"
 ".\objects\oled.o"
 ".\objects\uart.o"
 ".\objects\maths.o"
-".\objects\i2c_2.o"
 ".\objects\i2c.o"
 ".\objects\button.o"
 ".\objects\debug.o"
