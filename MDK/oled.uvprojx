@@ -433,6 +433,16 @@
               <FileType>5</FileType>
               <FilePath>..\USER\maths.h</FilePath>
             </File>
+            <File>
+              <FileName>i2c_2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\i2c_2.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\MPU6050.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -482,6 +492,16 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\i2c_2.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MPU6050.c</FilePath>
             </File>
           </Files>
         </Group>

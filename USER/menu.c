@@ -47,6 +47,7 @@ void Check_Status(void)
                     if (i == 0) flag_stt.flag_1 = 1;
                     if (i == 1) flag_stt.flag_2 = 1;
                     if (i == 2) flag_stt.flag_3 = 1;
+										flag = 0;
                 }
             }
         }
@@ -484,8 +485,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     if(item < 4) {
                         // Hiển thị 4 LED
                         OLED_ShowString(25, i, "LED");
-                        //OLED_ShowNum(60, i, item+1);
-                        OLED_ShowString(50, i, ": ");
+                        OLED_ShowNum(50, i, item+1);
+                        OLED_ShowString(60, i, ": ");
                         
                         // Hiển thị giá trị tương ứng
                         uint16_t value;
@@ -496,7 +497,7 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                             case 3: value = value_4; break;
                             default: value = 0;
                         }
-                        OLED_ShowNum(60, i, value);
+                        OLED_ShowNum(70, i, value);
                     }
                     else if(item == 4) {
                         OLED_ShowString(25, i, "Show Value");
@@ -533,8 +534,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                         default: value = 0;
                     }
                     
-                    OLED_ClearArea(60, i, 5);
-                    OLED_ShowNum(60, i, value);
+                    OLED_ClearArea(70, i, 5);
+                    OLED_ShowNum(70, i, value);
                 }
             }
             
@@ -579,10 +580,10 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     // Show Value - Hiển thị các giá trị đã lưu
                     OLED_Clear();
                     for(uint8_t i = 0; i < 4; i++) {
-                        OLED_ShowString(15, i, "LED");
-                        //OLED_ShowNum(50, i, i+1);
-                        OLED_ShowString(40, i, ": ");
-                        OLED_ShowNum(50, i, calibrated_leds[i]);
+                        OLED_ShowString(25, i, "LED");
+                        OLED_ShowNum(50, i, i+1);
+                        OLED_ShowString(60, i, ": ");
+                        OLED_ShowNum(70, i, calibrated_leds[i]);
                     }
                     
                     // Reset biến cho việc kiểm tra nhấn giữ
@@ -630,8 +631,8 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     uint8_t item = start_pos + i;
                     if(item < 4) {
                         OLED_ShowString(25, i, "LED");
-                       //OLED_ShowNum(40, i, item+1);
-                        OLED_ShowString(50, i, ": ");
+                        OLED_ShowNum(50, i, item+1);
+                        OLED_ShowString(60, i, ": ");
                         
                         uint16_t value;
                         switch(item) {
@@ -641,7 +642,7 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                             case 3: value = value_4; break;
                             default: value = 0;
                         }
-                        OLED_ShowNum(60, i, value);
+                        OLED_ShowNum(70, i, value);
                     }
                     else if(item == 4) {
                         OLED_ShowString(25, i, "Show Value");
