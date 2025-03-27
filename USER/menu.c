@@ -10,6 +10,13 @@ float calibrated_angle = 0;
 uint16_t calibrated_leds[4];
 static uint8_t first_entry = 1;  // Thêm biến để kiểm tra lần đầu vào menu
 
+// Add these global variables near the top of the file, with other globals
+float g_angle;
+uint16_t g_value_1;
+uint16_t g_value_2;
+uint16_t g_value_3;
+uint16_t g_value_4;
+
 void Check_Status(void)
 {
     static uint32_t last_debounce_time[3] = {0, 0, 0}; 
@@ -64,8 +71,7 @@ void Reset_Status(void)
     flag_stt.flag_3 = 0;
 }
 
-void Main_Menu(uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-               uint16_t value_4, float angle)   
+void Main_Menu(void)   
 {
     Check_Status();
     static uint8_t cursor_pos = 0;
@@ -118,36 +124,17 @@ void Main_Menu(uint16_t value_1, uint16_t value_2, uint16_t value_3,
     
     if(flag_stt.flag_3)
     {
-        // Call Select_Menu with the current cursor position
-        Select_Menu(cursor_pos, value_1, value_2, value_3, value_4, angle);
+        // Update sensor values before entering submenu
+        get_value();
+        
+        // Call Select_Menu with the current cursor position and global variables
+        Select_Menu(cursor_pos);
+        
         // Force redraw of menu when we return
         menu_initialized = 0; 
         last_drawn_pos = 255;
         
         flag_stt.flag_3 = 0;
-    }
-}
-
-// New animation dots function
-void Update_Animation_Dots(uint32_t current_time, uint32_t *last_animation_time, uint8_t *dot_state)
-{
-    if(current_time - *last_animation_time >= ANIMATION_INTERVAL) {
-        *last_animation_time = current_time;
-        
-        // Clear the dots area first
-        OLED_ShowString(100, 2, "    ");
-        
-        // Display dots based on current state
-        if(*dot_state == 1) {
-            OLED_ShowString(90, 2, ".");
-        } else if(*dot_state == 2) {
-            OLED_ShowString(90, 2, "..");
-        } else if(*dot_state == 3) {
-            OLED_ShowString(90, 2, "...");
-        }
-        
-        // Move to next state
-        *dot_state = (*dot_state + 1) % 4; // Cycle through 0,1,2,3
     }
 }
 
@@ -177,8 +164,7 @@ uint8_t Check_Long_Press(uint8_t button_state, uint32_t current_time,
 }
 
 // New LED navigation function
-void Handle_LED_Navigation(uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-                          uint16_t value_4, uint8_t *led_cursor_pos, uint8_t *led_page)
+void Handle_LED_Navigation(uint8_t *led_cursor_pos, uint8_t *led_page)
 {
     // Handle Down button (flag_stt.flag_1)
     if(flag_stt.flag_1) {
@@ -196,7 +182,7 @@ void Handle_LED_Navigation(uint16_t value_1, uint16_t value_2, uint16_t value_3,
         }
         
         // Update display with new cursor position
-        Update_Led(value_1, value_2, value_3, value_4, 0, *led_cursor_pos);
+        Update_Led(0, *led_cursor_pos);
         flag_stt.flag_1 = 0;
     }
     
@@ -217,7 +203,7 @@ void Handle_LED_Navigation(uint16_t value_1, uint16_t value_2, uint16_t value_3,
         }
         
         // Update display with new cursor position
-        Update_Led(value_1, value_2, value_3, value_4, 0, *led_cursor_pos);
+        Update_Led(0, *led_cursor_pos);
         flag_stt.flag_2 = 0;
     }
     
@@ -268,8 +254,7 @@ void Handle_Calibration_Navigation(uint8_t *calib_cursor_pos, uint8_t max_pos)
 }
 
 // Updated Select_Menu function for calibration
-void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t value_3, 
-                uint16_t value_4,  float angle)
+void Select_Menu(uint8_t menu)
 {
     uint32_t button_press_start = 0;
     uint8_t is_button_held = 0;
@@ -291,9 +276,9 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
     
     switch(menu) {
         case 0: // Calib MPU
-            // Hiển thị menu ban đầu
+            get_value();
             OLED_ShowString(25, 0, "Angle: ");
-            OLED_ShowFloat(75, 0, angle);
+            OLED_ShowFloat(75, 0, g_angle);
             OLED_ShowString(25, 1, "Show Value");
             OLED_ShowString(25, 2, "Clear Value");
             OLED_ShowString(25, 3, "Exit");
@@ -303,88 +288,145 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
         case 1: // Calib LED
             if(calib_page == 0) {
                 // Trang 1: Hiển thị giá trị LED hiện tại
-                OLED_ShowString(0, 1, "LED1: ");
-                OLED_ShowNum(40, 1, value_1);
-                OLED_ShowString(0, 2, "LED2: ");
-                OLED_ShowNum(40, 2, value_2);
-                OLED_ShowString(0, 3, "LED3: ");
-                OLED_ShowNum(40, 3, value_3);
-                OLED_ShowString(0, 4, "LED4: ");
-                OLED_ShowNum(40, 4, value_4);
+                OLED_ShowString(0, 0, "LED1: ");
+                OLED_ShowNum(40, 0, g_value_1);
+                OLED_ShowString(0, 1, "LED2: ");
+                OLED_ShowNum(40, 1, g_value_2);
+                OLED_ShowString(0, 2, "LED3: ");
+                OLED_ShowNum(40, 2, g_value_3);
+                OLED_ShowString(0, 3, "LED4: ");
+                OLED_ShowNum(40, 3, g_value_4);
                 OLED_ShowString(0, 1, "->");  // Initial cursor position on LED1
             } 
             break;
             
         case 2: // Debug MPU
-            Update_MPU(angle);
+            Update_MPU();
             break;
             
         case 3: // Debug LED
             first_entry = 1;  // Reset trạng thái để vẽ lại toàn bộ màn hình
-            Update_Led(value_1, value_2, value_3, value_4, 0, 0);
+            Update_Led(0, 0);
             break;
     }
     
     Reset_Status();
     
-    // Wait in this menu until button 3 is held for 1 second or selection is made
     while(1) {
-       Check_Status();
+        Check_Status();
         uint32_t current_time = millis();
+        
+        // Update all sensor values periodically for all menus
+        if(current_time - last_update_time >= UPDATE_INTERVAL) {
+            last_update_time = current_time;
+            
+            // Update all global values at once
+            get_value();
+            
+            // Handle MPU calibration menu updates
+            if(menu == 0) {
+                OLED_ClearArea(75, 0, 5);
+                OLED_ShowFloat(75, 0, g_angle);
+            } 
+            // Handle LED calibration menu updates
+            else if(menu == 1) {
+                uint8_t start_pos = 0;
+                if(calib_cursor_pos > 2) {
+                    start_pos = calib_cursor_pos - 2;
+                }
+                if(start_pos > 3) {
+                    start_pos = 3;
+                }
+                
+                // Update only visible LEDs on screen
+                for(uint8_t i = 0; i < 4 && (start_pos + i) < 4; i++) {
+                    uint8_t led_idx = start_pos + i;
+                    uint16_t value;
+                    
+                    switch(led_idx) {
+                        case 0: value = g_value_1; break;
+                        case 1: value = g_value_2; break;
+                        case 2: value = g_value_3; break;
+                        case 3: value = g_value_4; break;
+                        default: value = 0;
+                    }
+                    
+                    OLED_ClearArea(70, i, 5);
+                    OLED_ShowNum(70, i, value);
+                }
+            }
+            // Handle Debug MPU menu updates
+            else if(menu == 2) {
+                Update_MPU();
+            }
+            // Handle Debug LED menu updates (only for current values page)
+            else if(menu == 3) {
+                static uint8_t last_show_calibrated = 255;
+                static uint8_t show_calibrated = 0;
+                
+                // Only update current values mode, not calibrated values mode
+                if(!show_calibrated) {
+                    // Update LED values on screen
+                    OLED_ClearArea(60, 0, 5);
+                    OLED_ShowNum(60, 0, g_value_1);
+                    
+                    OLED_ClearArea(60, 1, 5);
+                    OLED_ShowNum(60, 1, g_value_2);
+                    
+                    OLED_ClearArea(60, 2, 5);
+                    OLED_ShowNum(60, 2, g_value_3);
+                    
+                    OLED_ClearArea(60, 3, 5);
+                    OLED_ShowNum(60, 3, g_value_4);
+                }
+                
+                // Store the current mode to detect changes
+                last_show_calibrated = show_calibrated;
+            }
+        }
         
         // Handle MPU calibration menu
         if(menu == 0) {
-            // Xử lý điều hướng cho 4 lựa chọn
+            // Navigation and cursor handling for 4 options
             Handle_Calibration_Navigation(&calib_cursor_pos, 4);
 
-            // Kiểm tra vị trí con trỏ có thay đổi không
             if(calib_cursor_pos != last_calib_cursor_pos) {
-                // Xóa các vị trí con trỏ cũ
+                // Clear old cursor positions
                 OLED_ShowString(0, 0, "   ");
                 OLED_ShowString(0, 1, "   ");
                 OLED_ShowString(0, 2, "   ");
                 OLED_ShowString(0, 3, "   ");
                 
-                // Vẽ con trỏ ở vị trí mới
+                // Draw new cursor
                 OLED_ShowString(0, calib_cursor_pos, "->");
                 
-                // Cập nhật vị trí đã biết cuối cùng
                 last_calib_cursor_pos = calib_cursor_pos;
             }
 
-            // Cập nhật giá trị góc hiện tại liên tục
-            if(current_time - last_update_time >= UPDATE_INTERVAL) {
-                last_update_time = current_time;
-                OLED_ClearArea(75, 0, 5);
-                OLED_ShowFloat(75, 0, angle);
-            }
-
-            // Xử lý lựa chọn
+            // Process selection
             if(flag_stt.flag_3) {
                 if(calib_cursor_pos == 0) {
-                    // "Angle" được chọn - Lưu hoặc xóa góc
+                    // "Angle" selection - save or clear angle
                     if(calibrated_angle != 0) {
-                        // Đã lưu trước đó, xóa giá trị
                         calibrated_angle = 0;
                         
-                        // Hiển thị xác nhận
                         OLED_Clear();
                         OLED_ShowString(10, 2, "Angle Cleared!");
                         delay_ms(1000);
                     } else {
-                        // Chưa lưu, lưu giá trị mới
-                        calibrated_angle = angle;
+                        // Get fresh value before saving
+                        get_value();
+                        calibrated_angle = g_angle;
                         
-                        // Hiển thị xác nhận
                         OLED_Clear();
                         OLED_ShowString(10, 2, "Angle Saved!");
                         delay_ms(1000);
                     }
                     
-                    // Vẽ lại menu
+                    // Redraw menu
                     OLED_Clear();
                     OLED_ShowString(25, 0, "Angle: ");
-                    OLED_ShowFloat(75, 0, angle);
+                    OLED_ShowFloat(75, 0, g_angle);
                     OLED_ShowString(25, 1, "Show Value");
                     OLED_ShowString(25, 2, "Clear Value");
                     OLED_ShowString(25, 3, "Exit");
@@ -394,231 +436,77 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     last_calib_cursor_pos = 0;
                     flag_stt.flag_3 = 0;
                 }
+                // Rest of the code remains unchanged
                 else if(calib_cursor_pos == 1) {
-                    // "Show Value" được chọn - Hiển thị giá trị đã lưu
+                    // "Show Value" option
                     OLED_Clear();
                     OLED_ShowString(0, 0, "Angle:");
                     OLED_ShowFloat(55, 0, calibrated_angle);
                     
-                    // Reset biến cho việc kiểm tra nhấn giữ
                     uint32_t show_press_start = 0;
                     uint8_t show_is_button_held = 0;
                     
-                    // Vòng lặp chờ người dùng nhấn giữ nút
                     while(1) {
                         Check_Status();
                         uint32_t current_time = millis();
                         
-                        // Kiểm tra nếu người dùng nhấn giữ nút 3
                         if(Check_Long_Press(stt_3, current_time, &show_press_start, &show_is_button_held)) {
-                            break; // Thoát khỏi vòng lặp và quay lại menu trước đó
+                            break;
                         }
                     }
                     
-                    // Vẽ lại menu
+                    // Redraw menu
                     OLED_Clear();
                     OLED_ShowString(25, 0, "Angle: ");
-                    OLED_ShowFloat(75, 0, angle);
+                    get_value(); // Get fresh value before redrawing
+                    OLED_ShowFloat(75, 0, g_angle);
                     OLED_ShowString(25, 1, "Show Value");
                     OLED_ShowString(25, 2, "Clear Value");
                     OLED_ShowString(25, 3, "Exit");
-                    OLED_ShowString(0, 1, "->");  // Đặt con trỏ ở Show Value
+                    OLED_ShowString(0, 1, "->");
                     
                     calib_cursor_pos = 1;
                     last_calib_cursor_pos = 1;
                     flag_stt.flag_3 = 0;
                 }
                 else if(calib_cursor_pos == 2) {
-                    // "Clear Value" được chọn - Xóa giá trị nhưng không quay về menu chính
+                    // "Clear Value" option
                     calibrated_angle = 0;
                     
-                    // Hiển thị xác nhận
                     OLED_Clear();
                     OLED_ShowString(10, 2, "Angle Cleared!");
                     delay_ms(1000);
                     
-                    // Vẽ lại menu Calib MPU thay vì thoát về menu chính
+                    // Redraw menu
                     OLED_Clear();
                     OLED_ShowString(25, 0, "Angle: ");
-                    OLED_ShowFloat(75, 0, angle);
+                    get_value(); // Get fresh value before redrawing
+                    OLED_ShowFloat(75, 0, g_angle);
                     OLED_ShowString(25, 1, "Show Value");
                     OLED_ShowString(25, 2, "Clear Value");
                     OLED_ShowString(25, 3, "Exit");
-                    
-                    // Đặt con trỏ ở vị trí Clear Value
                     OLED_ShowString(0, 2, "->");
                     
                     calib_cursor_pos = 2;
                     last_calib_cursor_pos = 2;
                     flag_stt.flag_3 = 0;
-                    
-                    // Không có break ở đây để tiếp tục ở trong menu này
                 }
                 else if(calib_cursor_pos == 3) {
-                    // "Exit" được chọn - Quay về menu chính
+                    // "Exit" option
                     break;
                 }
             }
         }
         
         // Handle LED calibration menu
-        if(menu == 1) {
-            // Di chuyển giữa 7 mục: 4 LEDs, Show Value, Clear Value, Exit
+        else if(menu == 1) {
+            // Navigation between 7 items: 4 LEDs, Show Value, Clear Value, Exit
             Handle_Calibration_Navigation(&calib_cursor_pos, 7);
 
-            // Xác định vị trí bắt đầu hiển thị dựa trên vị trí con trỏ
-            uint8_t start_pos = 0;
-            if(calib_cursor_pos > 2) {
-                start_pos = calib_cursor_pos - 2;
-            }
-            if(start_pos > 3) {  // Đảm bảo không vượt quá giới hạn
-                start_pos = 3;
-            }
-
-            // Chỉ vẽ lại menu nếu vị trí con trỏ thay đổi
+            // Check if cursor position changed - redraw menu if necessary
             if(calib_cursor_pos != last_calib_cursor_pos) {
-                OLED_Clear();
-                
-                // Hiển thị 4 mục menu từ vị trí bắt đầu
-                for(uint8_t i = 0; i < 4 && (start_pos + i) < 7; i++) {
-                    uint8_t item = start_pos + i;
-                    if(item < 4) {
-                        // Hiển thị 4 LED
-                        OLED_ShowString(25, i, "LED");
-                        OLED_ShowNum(50, i, item+1);
-                        OLED_ShowString(60, i, ": ");
-                        
-                        // Hiển thị giá trị tương ứng
-                        uint16_t value;
-                        switch(item) {
-                            case 0: value = value_1; break;
-                            case 1: value = value_2; break;
-                            case 2: value = value_3; break;
-                            case 3: value = value_4; break;
-                            default: value = 0;
-                        }
-                        OLED_ShowNum(70, i, value);
-                    }
-                    else if(item == 4) {
-                        OLED_ShowString(25, i, "Show Value");
-                    }
-                    else if(item == 5) {
-                        OLED_ShowString(25, i, "Clear Value");
-                    }
-                    else if(item == 6) {
-                        OLED_ShowString(25, i, "Exit");
-                    }
-                }
-                
-                // Hiển thị con trỏ tại vị trí tương ứng
-                uint8_t cursor_y = calib_cursor_pos - start_pos;
-                OLED_ShowString(0, cursor_y, "->");
-                
-                last_calib_cursor_pos = calib_cursor_pos;
-            }
-            
-            // Cập nhật giá trị LED theo thời gian thực
-            if(current_time - last_update_time >= UPDATE_INTERVAL) {
-                last_update_time = current_time;
-                
-                // Chỉ cập nhật các LED hiển thị trên màn hình
-                for(uint8_t i = 0; i < 4 && (start_pos + i) < 4; i++) {
-                    uint8_t led_idx = start_pos + i;
-                    uint16_t value;
-                    
-                    switch(led_idx) {
-                        case 0: value = value_1; break;
-                        case 1: value = value_2; break;
-                        case 2: value = value_3; break;
-                        case 3: value = value_4; break;
-                        default: value = 0;
-                    }
-                    
-                    OLED_ClearArea(70, i, 5);
-                    OLED_ShowNum(70, i, value);
-                }
-            }
-            
-            // Sửa phần xử lý lựa chọn trong menu Calib LED
-            if(flag_stt.flag_3) {
-                if(calib_cursor_pos < 4) {
-                    // Kiểm tra xem LED này đã được lưu trước đó chưa
-                    uint8_t current_led = calib_cursor_pos;
-                    
-                    if(calibrated_leds[current_led] != 0) {
-                        // Đã lưu trước đó, xóa giá trị đã lưu
-                        calibrated_leds[current_led] = 0;
-                        
-                        // Hiển thị thông báo xóa
-                        OLED_Clear();
-                        OLED_ShowString(10, 1, "LED");
-                        OLED_ShowNum(35, 1, current_led+1);
-                        OLED_ShowString(40, 1, " Cleared!");
-                        delay_ms(1000);
-                    } else {
-                        // Chưa lưu, lưu giá trị mới
-                        uint16_t value_to_save = 0;
-                        switch(current_led) {
-                            case 0: value_to_save = value_1; break;
-                            case 1: value_to_save = value_2; break;
-                            case 2: value_to_save = value_3; break;
-                            case 3: value_to_save = value_4; break;
-                        }
-                        
-                        calibrated_leds[current_led] = value_to_save;
-                        
-                        // Hiển thị xác nhận lưu
-                        OLED_Clear();
-                        OLED_ShowString(10, 1, "LED");
-                        OLED_ShowNum(35, 1, current_led+1);
-                        OLED_ShowString(40, 1, " Saved!");
-                        delay_ms(1000);
-                    }
-                }
-                // Phần còn lại của code giữ nguyên
-                else if(calib_cursor_pos == 4) {
-                    // Show Value - Hiển thị các giá trị đã lưu
-                    OLED_Clear();
-                    for(uint8_t i = 0; i < 4; i++) {
-                        OLED_ShowString(25, i, "LED");
-                        OLED_ShowNum(50, i, i+1);
-                        OLED_ShowString(60, i, ": ");
-                        OLED_ShowNum(70, i, calibrated_leds[i]);
-                    }
-                    
-                    // Reset biến cho việc kiểm tra nhấn giữ
-                    uint32_t show_press_start = 0;
-                    uint8_t show_is_button_held = 0;
-                    
-                    // Vòng lặp chờ người dùng nhấn giữ nút
-                    while(1) {
-                        Check_Status();
-                        uint32_t current_time = millis();
-                        
-                        // Kiểm tra nếu người dùng nhấn giữ nút 3
-                        if(Check_Long_Press(stt_3, current_time, &show_press_start, &show_is_button_held)) {
-                            break; // Thoát khỏi vòng lặp và quay lại menu trước đó
-                        }
-                    }
-                }
-                else if(calib_cursor_pos == 5) {
-                    // Clear Value - Xóa tất cả giá trị LED đã lưu
-                    for(int i = 0; i < 4; i++) {
-                        calibrated_leds[i] = 0;
-                    }
-                    
-                    // Hiển thị xác nhận
-                    OLED_Clear();
-                    OLED_ShowString(10, 2, "Values Cleared!");
-                    delay_ms(1000);
-                }
-                else if(calib_cursor_pos == 6) {
-                    // Exit - Quay về menu chính
-                    break;
-                }
-                
-                // Vẽ lại menu
-                OLED_Clear();
+                // Calculate which items to display based on cursor position
+                // Show 4 items at a time with current selection centered when possible
                 uint8_t start_pos = 0;
                 if(calib_cursor_pos > 2) {
                     start_pos = calib_cursor_pos - 2;
@@ -627,91 +515,200 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
                     start_pos = 3;
                 }
                 
+                // Clear screen before drawing new items
+                OLED_Clear();
+                
+                // Draw the visible menu items (maximum 4 items)
                 for(uint8_t i = 0; i < 4 && (start_pos + i) < 7; i++) {
                     uint8_t item = start_pos + i;
+                    
                     if(item < 4) {
+                        // LED1-4 items
                         OLED_ShowString(25, i, "LED");
                         OLED_ShowNum(50, i, item+1);
-                        OLED_ShowString(60, i, ": ");
+                        OLED_ShowString(60, i, ":");
                         
-                        uint16_t value;
+                        // Show current LED value
+                        uint16_t value = 0;
                         switch(item) {
-                            case 0: value = value_1; break;
-                            case 1: value = value_2; break;
-                            case 2: value = value_3; break;
-                            case 3: value = value_4; break;
-                            default: value = 0;
+                            case 0: value = g_value_1; break;
+                            case 1: value = g_value_2; break;
+                            case 2: value = g_value_3; break;
+                            case 3: value = g_value_4; break;
                         }
                         OLED_ShowNum(70, i, value);
+                        
+                        // Show asterisk next to LEDs with saved calibration values
+                        if(calibrated_leds[item] != 0) {
+                            OLED_ShowString(100, i, "*");
+                        }
                     }
                     else if(item == 4) {
-                        OLED_ShowString(25, i, "Show Value");
+                        OLED_ShowString(25, i, "Show Values");
                     }
                     else if(item == 5) {
-                        OLED_ShowString(25, i, "Clear Value");
+                        OLED_ShowString(25, i, "Clear All");
                     }
                     else if(item == 6) {
                         OLED_ShowString(25, i, "Exit");
                     }
                 }
                 
+                // Calculate where to draw the cursor on screen
                 uint8_t cursor_y = calib_cursor_pos - start_pos;
+                
+                // Draw cursor at appropriate position
                 OLED_ShowString(0, cursor_y, "->");
                 
-                flag_stt.flag_3 = 0;
+                last_calib_cursor_pos = calib_cursor_pos;
+            }
+            
+            // Update LED values periodically if we're showing LEDs (only update visible LEDs)
+            if(current_time - last_update_time >= UPDATE_INTERVAL) {
+                last_update_time = current_time;
+                
+                // Calculate which items are currently visible
+                uint8_t start_pos = 0;
+                if(calib_cursor_pos > 2) {
+                    start_pos = calib_cursor_pos - 2;
+                }
+                if(start_pos > 3) {
+                    start_pos = 3;
+                }
+                
+                // Update only visible LED values (not labels or menu items)
+                for(uint8_t i = 0; i < 4 && (start_pos + i) < 4; i++) {
+                    uint8_t led_idx = start_pos + i;
+                    uint16_t value = 0;
+                    
+                    switch(led_idx) {
+                        case 0: value = g_value_1; break;
+                        case 1: value = g_value_2; break;
+                        case 2: value = g_value_3; break;
+                        case 3: value = g_value_4; break;
+                    }
+                    
+                    // Clear area and show updated value
+                    OLED_ClearArea(70, i, 5);
+                    OLED_ShowNum(70, i, value);
+                }
+            }
+            
+            // Handle selection (Button 3)
+            if(flag_stt.flag_3) {
+                flag_stt.flag_3 = 0;  // Reset flag immediately to prevent multiple triggers
+                
+                if(calib_cursor_pos < 4) {
+                    // LED selection - toggle save/clear for this LED
+                    uint8_t current_led = calib_cursor_pos;
+                    
+                    if(calibrated_leds[current_led] != 0) {
+                        // Already calibrated, clear the value
+                        calibrated_leds[current_led] = 0;
+                        
+                        // Show confirmation
+                        OLED_Clear();
+                        OLED_ShowString(10, 1, "LED");
+                        OLED_ShowNum(35, 1, current_led+1);
+                        OLED_ShowString(40, 1, " Cleared!");
+                        delay_ms(1000);
+                    } else {
+                        // Not calibrated, save current value
+                        get_value();  // Get fresh reading first
+                        
+                        uint16_t value_to_save = 0;
+                        switch(current_led) {
+                            case 0: value_to_save = g_value_1; break;
+                            case 1: value_to_save = g_value_2; break;
+                            case 2: value_to_save = g_value_3; break;
+                            case 3: value_to_save = g_value_4; break;
+                        }
+                        
+                        calibrated_leds[current_led] = value_to_save;
+                        
+                        // Show confirmation
+                        OLED_Clear();
+                        OLED_ShowString(10, 1, "LED");
+                        OLED_ShowNum(35, 1, current_led+1);
+                        OLED_ShowString(40, 1, " Saved!");
+                        delay_ms(1000);
+                    }
+                    
+                    // Force redraw menu after returning
+                    last_calib_cursor_pos = 255;
+                }
+                else if(calib_cursor_pos == 4) {
+                    // "Show Values" option - display all saved values
+                    OLED_Clear();
+                    //OLED_ShowString(0, 0, "Saved Values:");
+                    
+                    for(uint8_t i = 0; i < 4; i++) {
+                        OLED_ShowString(0, i, "LED");
+                        OLED_ShowNum(25, i, i);
+                        OLED_ShowString(35, i, ":");
+                        OLED_ShowNum(50, i+1, calibrated_leds[i]);
+                    }
+                    
+                    // Wait for long button press to return
+                    uint32_t show_press_start = 0;
+                    uint8_t show_is_button_held = 0;
+                    
+                    while(1) {
+                        Check_Status();
+                        uint32_t current_time = millis();
+                        
+                        if(Check_Long_Press(stt_3, current_time, &show_press_start, &show_is_button_held)) {
+                            break;
+                        }
+                    }
+                    
+                    // Force redraw menu after returning
+                    last_calib_cursor_pos = 255;
+                }
+                else if(calib_cursor_pos == 5) {
+                    // "Clear All" option - clear all calibrated values
+                    for(uint8_t i = 0; i < 4; i++) {
+                        calibrated_leds[i] = 0;
+                    }
+                    
+                    // Show confirmation
+                    OLED_Clear();
+                    OLED_ShowString(10, 2, "All Values Cleared!");
+                    delay_ms(1000);
+                    
+                    // Force redraw menu after returning
+                    last_calib_cursor_pos = 255;
+                }
+                else if(calib_cursor_pos == 6) {
+                    // "Exit" option - return to main menu
+                    break;
+                }
             }
         }
         
-        // Handle Debug LED menu
-        if(menu == 3) {
-            static uint8_t show_calibrated = 0; // 0: current values, 1: calibrated values
+        // Handle Debug LED menu 
+        else if(menu == 3) {
+            static uint8_t show_calibrated = 0;
             
-            // Toggle between current and calibrated values using up/down buttons
+            // Toggle between current and calibrated values
             if(flag_stt.flag_1 || flag_stt.flag_2) {
                 show_calibrated = !show_calibrated;
-                Update_Led(value_1, value_2, value_3, value_4, show_calibrated, 0);
+                get_value(); // Get fresh values before updating display
+                Update_Led(show_calibrated, 0);
                 flag_stt.flag_1 = 0;
                 flag_stt.flag_2 = 0;
             }
             
-            // Update values periodically (only for current values page)
-            if(current_time - last_update_time >= UPDATE_INTERVAL && !show_calibrated) {
-                last_update_time = current_time;
-                
-                // Chỉ cập nhật giá trị số, không vẽ lại toàn bộ màn hình
-                OLED_ClearArea(60, 1, 5);
-                OLED_ShowNum(60, 1, value_1);
-                
-                OLED_ClearArea(60, 2, 5);
-                OLED_ShowNum(60, 2, value_2);
-                
-                OLED_ClearArea(60, 3, 5);
-                OLED_ShowNum(60, 3, value_3);
-                
-                OLED_ClearArea(60, 4, 5);
-                OLED_ShowNum(60, 4, value_4);
-            }
-            
             // Long press to exit
             if(Check_Long_Press(stt_3, current_time, &button_press_start, &is_button_held)) {
-                break; // Exit menu
+                break;
             }
         }
         
-        // Long press detection for button 3 (only for debug menus)
-        if((menu == 2 || menu == 3) && 
+        // Handle long press detection for debug menus
+        else if((menu == 2 || menu == 3) && 
            Check_Long_Press(stt_3, current_time, &button_press_start, &is_button_held)) {
-            break; // Exit the menu
-        }
-        
-        // Sửa phần này để không cập nhật lại menu Debug LED
-        if((menu == 2 || menu == 3) && (current_time - last_update_time >= UPDATE_INTERVAL)) {
-            last_update_time = current_time;
-            
-            if(menu == 2) { // Debug MPU
-                OLED_ClearArea(70, 2, 6);
-                OLED_ShowFloat(70, 2, angle);
-            } 
+            break;
         }
     }
     
@@ -721,8 +718,7 @@ void Select_Menu(uint8_t menu, uint16_t value_1, uint16_t value_2, uint16_t valu
 }
 
 // Modified Update_Led function for Debug LED
-void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t value_4, 
-                uint8_t show_calibrated, uint8_t led_cursor_pos)
+void Update_Led(uint8_t show_calibrated, uint8_t led_cursor_pos)
 {
     // Reset static variable if this is entry to Debug LED menu (led_cursor_pos == 0)
     static uint8_t current_mode = 255;
@@ -747,16 +743,16 @@ void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t v
     if(!show_calibrated) {
         // Hiển thị giá trị hiện tại
         OLED_ClearArea(60, 0, 5);
-        OLED_ShowNum(60, 0, value_1);
+        OLED_ShowNum(60, 0, g_value_1);
         
         OLED_ClearArea(60, 1, 5);
-        OLED_ShowNum(60, 1, value_2);
+        OLED_ShowNum(60, 1, g_value_2);
         
         OLED_ClearArea(60, 2, 5);
-        OLED_ShowNum(60, 2, value_3);
+        OLED_ShowNum(60, 2, g_value_3);
         
         OLED_ClearArea(60, 3, 5);
-        OLED_ShowNum(60, 3, value_4);
+        OLED_ShowNum(60, 3, g_value_4);
     } else {
         // Hiển thị giá trị đã lưu
         OLED_ClearArea(60, 0, 5);
@@ -774,9 +770,12 @@ void Update_Led(uint16_t value_1, uint16_t value_2, uint16_t value_3, uint16_t v
 }
 
 // Modified Update_MPU function
-void Update_MPU(float value)
+void Update_MPU(void)
 {
     static uint8_t first_draw = 1;
+    
+    // Update values before displaying
+    get_value();
     
     // Luôn vẽ lại toàn bộ nội dung khi vào menu Debug MPU
     OLED_ShowString(25, 0, "MPU Debug");
@@ -788,5 +787,15 @@ void Update_MPU(float value)
     OLED_ShowFloat(90, 1, calibrated_angle);
     
     OLED_ClearArea(70, 2, 6);  // Xóa vùng hiển thị giá trị hiện tại
-    OLED_ShowFloat(70, 2, value);
+    OLED_ShowFloat(70, 2, g_angle);
+}
+
+
+void get_value(void)
+{
+    g_angle = MPU6050.Get_Yaw(0);
+    g_value_1 = 10;  // Replace with actual sensor reading
+    g_value_2 = 10;  // Replace with actual sensor reading
+    g_value_3 = 10;  // Replace with actual sensor reading
+    g_value_4 = 10;  // Replace with actual sensor reading
 }

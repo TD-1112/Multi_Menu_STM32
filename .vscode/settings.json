@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "define.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "menu.h": "c"
     }
 }

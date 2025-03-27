@@ -8,7 +8,7 @@
 
 #include "i2c_2.h"
 #include "delay.h"
-#include "uart.h"
+//#include "uart.h"
 #include "stm32f10x.h"                  // Device header
 
 

@@ -1,96 +1,119 @@
-#include "uart.h"
+ #include "uart.h"
+#include "string.h"
+#include "stdio.h"
 
-void USART1_Init(uint32_t baud_rate)
+volatile uint8_t UARTx_dataReceived[100] = "0\0";
+volatile uint8_t rx_flag = 0;
+volatile uint8_t id = 0;
+volatile uint8_t timeout = 0;
+
+void UART1_init(uint32_t baudrate);
+void UART1_SendNum(float data);
+void UART1_SendNumLn(float data);
+void UART1_SendString(uint8_t *data);
+uint8_t UART1_ReceiveData(uint8_t *data);
+
+
+UART_TypedefStruct UART;
+
+void UART_FirstInit(void) __attribute__ ((constructor));			// Ham nay se duoc chay truoc khi vao ham main
+
+void UART_FirstInit(void)
 {
-    RCC->APB2ENR |= (1 << 14) | (1 << 2); // Enable USART1 clock and GPIOA clock
-
-    // Configure PA9 as TX
-    GPIOA->CRH &= ~(unsigned int)(0xF << 4); // Clear PA9 configuration bits
-    GPIOA->CRH |= (0xB << 4);  // Set PA9 as Alternate function push-pull, 50 MHz
-
-    // Configure PA10 as RX
-    GPIOA->CRH &= ~(unsigned int)(0xF << 8); // Clear PA10 configuration bits
-    GPIOA->CRH |= (0x4 << 8);  // Set PA10 as Input floating
-
-    USART1->BRR = (unsigned short)(72000000 / baud_rate );// Set baud rate
-    USART1->CR1 |= ( 1 << 2) | (1 << 3) | (1 << 13) | (1 << 5); // Enable USART1, transmitter, receiver, and RX interrupt
+	UART.Init = UART1_init;
+	UART.ReceiveData = UART1_ReceiveData;
+	UART.SendNum = UART1_SendNum;
+	UART.SendNumLn = UART1_SendNumLn;
+	UART.SendString = UART1_SendString;
 }
 
-void USART1_Send_Char(char chr)
+void UART1_init(uint32_t baudrate)
 {
-    while (!(USART1->SR & ( 1 << 7)));
-    USART1->DR = chr;
+	GPIO_InitTypeDef 		GPIO_s;
+	USART_InitTypeDef 	UART_s;
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+	
+	GPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);
+	
+	GPIO_s.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_s.GPIO_Mode  = GPIO_Mode_AF_PP;
+	GPIO_s.GPIO_Pin   = GPIO_Pin_6;
+	GPIO_Init(GPIOB, &GPIO_s);
+	
+	GPIO_s.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_s.GPIO_Mode  = GPIO_Mode_IN_FLOATING;
+	GPIO_s.GPIO_Pin   = GPIO_Pin_7;
+	GPIO_Init(GPIOB, &GPIO_s);
+	
+	UART_s.USART_BaudRate = baudrate;											/* toc do truyen: baud_rates */
+	UART_s.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
+	UART_s.USART_Parity = USART_Parity_No;
+	UART_s.USART_StopBits = USART_StopBits_1;
+	UART_s.USART_WordLength = USART_WordLength_8b;
+	UART_s.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_Init(USART1,&UART_s);
+	USART_Cmd(USART1,ENABLE);																/* cho phep USART1 hoat dong */
+	
+	USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);						/* ngat nhan USART1 					*/
 }
 
-void USART1_Send_String(char* str)
+uint8_t UART1_ReceiveData(uint8_t *data)
 {
-    while(*str) {
-        while( !(USART1->SR & ( 1 << 7)));
-        USART1->DR = *str++;
-    }
-}
-
-void USART1_Send_Data(uint8_t* data, uint8_t length)
-{
-    for (int i = 0; i < length; i++) {
-        while( !(USART1->SR & ( 1 << 7)));
-        USART1->DR = data[i];
-    }
-}
-
-void USART1_Send_Number(int16_t num)
-{
-    if (num < 0) {
-        USART1_Send_Char('-');
-        num = -num;
-    }
-    uint8_t length = 0;
-    uint8_t temp[10];
-    if (num == 0) {
-        USART1_Send_Char('0');
-        return;
-    } else {
-        while (num != 0) {
-            uint8_t value = num % 10;
-            temp[length++] = value + '0';
-            num /= 10;
-        }
-        for (int i = length - 1; i >= 0; i--) {
-            USART1_Send_Char(temp[i]);
-        }
-    }
-}
-
-void USART1_Send_Float(float num)
-{
-    if (num < 0) {
-        USART1_Send_Char('-');
-        num = -num;
-    }
-    int16_t integer = (int16_t)num;
-    float decimal = num - integer;
-    USART1_Send_Number(integer);
-    USART1_Send_Char('.');
-    decimal *= 1000;
-    USART1_Send_Number((int16_t)decimal);
-}
-
-void USART1_Send_Hex(uint8_t num)
-{
-    uint8_t temp;
-    temp = num >> 4;
-    if(temp > 9) {
-        temp += 0x37;
-    } else {
+	uint8_t new_data = 0;
+	uint8_t index = 0;
+	if(rx_flag == 0) timeout = 0;
+	if(rx_flag && timeout < 1) {
+		volatile uint16_t i;
+		for(i = 0; i< 0xffff; i++);
 		
-        temp += 0x30;
-    }
-    USART1_Send_Char(temp);
-    temp = num & 0x0F;
-    if(temp > 9) {
-        temp += 0x37;
-    } else {
-        temp += 0x30;
-    }
-    USART1_Send_Char(temp);
+		timeout++;
+	}
+	else if(rx_flag == 1 && timeout >= 1)
+	{
+		UARTx_dataReceived[id++] = '\0';
+		id = 0;
+		rx_flag = 0;
+		new_data = 1;
+		do{ 
+			data[index] = UARTx_dataReceived[index]; 
+		}while(UARTx_dataReceived[index++]);
+	}
+	return new_data;
+}
+
+void UART1_SendString(uint8_t *data)
+{
+	do{
+		USART_SendData(USART1, *data);
+		while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==RESET);
+	}while(*(++data));
+}
+
+void UART1_SendNum(float data)
+{
+	uint8_t Number[50];
+	sprintf(Number,"%.3f",data);
+	UART1_SendString(Number);
+}
+
+void UART1_SendNumLn(float data)
+{
+	uint8_t Number[50];
+	sprintf(Number,"%.3f\n",data);
+	UART1_SendString(Number);
+}
+
+void USART1_IRQHandler(void)
+{
+	if(USART_GetITStatus(USART1,USART_IT_RXNE) != RESET)
+	{
+		timeout = 0;
+		if(rx_flag == 0){
+			rx_flag = 1;
+		}
+		UARTx_dataReceived[id++] = USART1->DR;
+	}
 }
