@@ -11,7 +11,8 @@
 
 // Biến phục vụ hiệu chuẩn
 extern float calibrated_angle;
-extern uint16_t calibrated_leds[4];
+extern uint16_t calibrated_leds[4]; // Cho Calib LED
+extern uint16_t wall_values[4];     // Mảng mới cho Wall Values
 
 // Biến giá trị cảm biến toàn cục
 extern float g_angle;
@@ -30,6 +31,7 @@ void Draw_LED_Calibration_Values(uint16_t val_fr, uint16_t val_fl, uint16_t val_
 void Draw_LED_Calibration_Options(uint8_t rel_cursor_pos);
 void Draw_Cursor(uint8_t line_count, uint8_t cursor_pos);
 
+
 // Các hàm tiện ích hiển thị
 void Show_Message(const char* message, uint16_t delay_ms_time);
 void Show_LED_Message(uint8_t led_idx, const char* action, uint16_t delay_ms_time);
@@ -44,6 +46,6 @@ void Handle_Calibration_Navigation(uint8_t *calib_cursor_pos, uint8_t max_pos);
 void Update_Led(uint8_t show_calibrated, uint8_t led_cursor_pos);
 
 // Lấy giá trị cảm biến
-void get_value(void);
+void get_value(uint8_t mode);
 
 #endif
