@@ -429,16 +429,6 @@
               <FilePath>..\USER\maths.h</FilePath>
             </File>
             <File>
-              <FileName>i2c_2.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\i2c_2.h</FilePath>
-            </File>
-            <File>
-              <FileName>MPU6050.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\MPU6050.h</FilePath>
-            </File>
-            <File>
               <FileName>irsensor.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\USER\irsensor.h</FilePath>
@@ -452,6 +442,21 @@
               <FileName>uart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\USER\uart.h</FilePath>
+            </File>
+            <File>
+              <FileName>bno055.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\bno055.h</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\i2c_2.h</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\MPU6050.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -499,16 +504,6 @@
               <FilePath>..\USER\delay.c</FilePath>
             </File>
             <File>
-              <FileName>i2c_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\i2c_2.c</FilePath>
-            </File>
-            <File>
-              <FileName>MPU6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\MPU6050.c</FilePath>
-            </File>
-            <File>
               <FileName>irsensor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\irsensor.c</FilePath>
@@ -522,6 +517,21 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bno055.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\bno055.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\i2c_2.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\MPU6050.c</FilePath>
             </File>
           </Files>
         </Group>

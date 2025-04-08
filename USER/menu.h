@@ -5,7 +5,7 @@
 
 // Timing configuration defines
 #define DEBOUNCE_DELAY       50    // Button debounce time in milliseconds
-#define LONG_PRESS_DURATION  1000  // Long press detection time in milliseconds
+#define LONG_PRESS_DURATION  500  // Long press detection time in milliseconds
 #define UPDATE_INTERVAL      1   // Display update interval in milliseconds (changed from 0)
 #define ANIMATION_INTERVAL   500   // Dot animation interval in milliseconds
 
@@ -39,7 +39,6 @@ void Select_Menu(uint8_t menu);
 
 // Display update functions
 void Update_Led(uint8_t show_calibrated, uint8_t led_cursor_pos);
-void Update_MPU(void);
 
 // Helper functions for targeted screen clearing
 void OLED_ClearLine(uint8_t line);

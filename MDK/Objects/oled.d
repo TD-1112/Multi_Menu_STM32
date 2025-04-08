@@ -20,5 +20,6 @@
   C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h \
   ..\USER\delay.h ..\USER\i2c.h ..\USER\button.h ..\USER\uart.h \
   ..\USER\debug.h ..\USER\menu.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\USER\i2c_2.h \
-  ..\USER\MPU6050.h ..\USER\irsensor.h ..\USER\nvic.h ..\USER\font.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h ..\USER\bno055.h \
+  ..\USER\i2c_2.h ..\USER\irsensor.h ..\USER\nvic.h ..\USER\MPU6050.h \
+  ..\USER\font.h

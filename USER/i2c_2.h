@@ -6,8 +6,8 @@
 */
 
 
-#ifndef __I2C_2__
-#define __I2C_2__
+#ifndef __I2C__
+#define __I2C__
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -16,10 +16,9 @@ extern "C" {
 
 typedef struct 
 {
-	void (*Init)(void);
-	void (*Write)(uint8_t address, uint8_t reg, uint8_t data);
-	void (*Read)(uint8_t address, uint8_t reg, uint8_t* data, uint8_t len);
-	
+    void (*Init)(void);
+    uint8_t (*Write)(uint8_t address, uint8_t reg, uint8_t data);
+    uint8_t (*Read)(uint8_t address, uint8_t reg, uint8_t* data, uint8_t len);
 } I2C_TypedefStruct;
 
 extern I2C_TypedefStruct I2C;

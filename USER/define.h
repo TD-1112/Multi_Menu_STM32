@@ -11,11 +11,11 @@
 #include "debug.h"
 #include "menu.h"
 #include "math.h"
-//#include "bno055.h"
+#include "bno055.h"
 #include "i2c_2.h"
-#include  "MPU6050.h"
 #include "irsensor.h"
 #include "nvic.h"
+#include "MPU6050.h"
 
 #define CELL   180
 
