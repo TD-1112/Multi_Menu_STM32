@@ -29,11 +29,11 @@ uint16_t g_value_4;
 void Draw_MPU_Calibration_Menu(float current_angle, float saved_angle, uint8_t cursor_pos)
 {
     OLED_Clear();
-    OLED_ShowString(25, 0, "Angle: ");
-    OLED_ShowFloat(75, 0, current_angle);
-    OLED_ShowString(25, 1, "Reset Angle");
-    OLED_ShowString(25, 2, "Calib Error");
-    OLED_ShowString(25, 3, "Exit");
+//    OLED_ShowString(25, 0, "Angle: ");
+//    OLED_ShowFloat(75, 0, current_angle);
+    OLED_ShowString(25, 0, "Reset Angle");
+    OLED_ShowString(25, 1, "Calib Error");
+    OLED_ShowString(25, 2, "Exit");
     OLED_ShowString(0, cursor_pos, "->");
 }
 
@@ -237,12 +237,12 @@ void Main_Menu(void)
     Check_Status(); // Kiểm tra trạng thái nút nhấn
     static uint8_t cursor_pos = 0; // Đặt con trỏ ở vị trí đầu tiên
     static uint8_t last_drawn_pos = 255; // Vị trí đã vẽ trước đó
-    uint8_t menu_items = 4; // Số lượng mục menu
+    uint8_t menu_items = 8; // Số lượng mục menu
     
     // Kiểm tra xem có nhấn nút lên hay xuống không
     if(flag_stt.flag_1)
     {
-        cursor_pos++; // Tăng vị trí con trỏ
+        cursor_pos += 2; // Tăng vị trí con trỏ
         if(cursor_pos >= menu_items)  // Nếu vượt quá số lượng mục menu thì quay về đầu danh sách
             cursor_pos = 0;     // Vòng lại đầu danh sách
         
@@ -253,7 +253,7 @@ void Main_Menu(void)
     if(flag_stt.flag_2)
     {
         if(cursor_pos == 0) // Nếu đang ở vị trí đầu tiên thì quay về cuối danh sách
-            cursor_pos = menu_items - 1;  // Vòng lại cuối danh sách
+            cursor_pos = menu_items - 2;  // Vòng lại cuối danh sách
         else
             cursor_pos--; // Giảm vị trí con trỏ
         
@@ -266,9 +266,9 @@ void Main_Menu(void)
     if(!menu_initialized) 
     {
         OLED_ShowString(20, 0, "Calib MPU");
-        OLED_ShowString(20, 1, "Calib Led");
-        OLED_ShowString(20, 2, "Wall Calib");  // Thay đổi từ "Debug Led" thành "Wall Calib"
-        OLED_ShowString(20, 3, "Exit");
+        OLED_ShowString(20, 2, "Calib Led");
+        OLED_ShowString(20, 4, "Wall Calib");  // Thay đổi từ "Debug Led" thành "Wall Calib"
+        OLED_ShowString(20, 6, "Exit");
         menu_initialized = 1; // Đánh dấu menu đã được khởi tạo
     }
     
@@ -351,15 +351,13 @@ void Select_Menu(uint8_t menu)
     // Cập nhật hiển thị menu hiệu chuẩn MPU
     if(menu == 0) {
         // Lấy giá trị góc MPU liên tục
-        get_value(1);
+        //get_value(1);
         
-        OLED_ClearArea(75, 0,6);
-        OLED_ShowFloat(75, 0, g_angle);
         // OLED_ClearArea(75, 1, 6);
         // OLED_ShowFloat(75, 1, calibrated_angle);
     
         // Xử lý điều hướng menu hiệu chuẩn MPU với 4 tùy chọn (thêm 1 option)
-        Handle_Calibration_Navigation(&calib_cursor_pos, 4);
+        Handle_Calibration_Navigation(&calib_cursor_pos, 3);
 
         if(calib_cursor_pos != last_calib_cursor_pos) {
             // Xóa các vị trí con trỏ cũ
@@ -369,29 +367,30 @@ void Select_Menu(uint8_t menu)
 
         // Xử lý lựa chọn
         if(flag_stt.flag_3) {
-            if(calib_cursor_pos == 0) {
-                // Hiển thị giá trị góc hiện tại - không làm gì thêm
-                calibrated_angle = g_angle; // Cập nhật giá trị góc đã hiệu chuẩn
-                Show_Message("Angle Saved", 1000);
+//            if(calib_cursor_pos == 0) {
+//                // Hiển thị giá trị góc hiện tại - không làm gì thêm
+//                calibrated_angle = g_angle; // Cập nhật giá trị góc đã hiệu chuẩn
+//                Show_Message("Angle Saved", 1000);
+//                Draw_MPU_Calibration_Menu(g_angle, calibrated_angle, calib_cursor_pos);
+//                flag_stt.flag_3 = 0;
+//            }
+           if(calib_cursor_pos == 0) {
+                // Reset angle - truyền giá trị hiện tại vào get_yaw để reset về 0
+								MPU6050.Get_Yaw(MPU6050.Get_Yaw(0));
+                Show_Message("Angle Reset", 1000);
+                
                 Draw_MPU_Calibration_Menu(g_angle, calibrated_angle, calib_cursor_pos);
                 flag_stt.flag_3 = 0;
             }
             else if(calib_cursor_pos == 1) {
-                // Reset angle - truyền giá trị hiện tại vào get_yaw để reset về 0
-                MPU6050.Get_Yaw(1); // Bỏ comment để thực sự reset góc
-                Show_Message("Angle Reset", 1000);
-                get_value(1); // Cập nhật lại giá trị g_angle sau khi reset
-                Draw_MPU_Calibration_Menu(g_angle, calibrated_angle, calib_cursor_pos);
-                flag_stt.flag_3 = 0;
-            }
-            else if(calib_cursor_pos == 2) {
                 // Calib error - gọi hàm để hiệu chuẩn lại gyro_error
                 // Reset gyro_error;
+								
                 Show_Message("Error Calibrated!", 1000);
                 Draw_MPU_Calibration_Menu(g_angle, calibrated_angle, calib_cursor_pos);
                 flag_stt.flag_3 = 0;
             }
-            else if(calib_cursor_pos == 3) {
+            else if(calib_cursor_pos == 2) {
                 // Lựa chọn "Exit"
                 break;
             }
@@ -811,15 +810,15 @@ void Update_Led(uint8_t show_calibrated, uint8_t led_cursor_pos)
  */
 void get_value(uint8_t mode)
 {
-		if(mode == 1) 
-		{
-			g_angle = MPU6050.Get_Yaw(0);
-		}
-		else
-		{
-			g_value_1 = IRSensor_data[FR_S];
-			g_value_2 = IRSensor_data[R_S];
-			g_value_3 = IRSensor_data[L_S];
-			g_value_4 = IRSensor_data[FL_S];
-		}
+    if(mode == 1) 
+    {
+        g_angle = MPU6050.Get_Yaw(0);
+    }
+    else
+    {
+        g_value_1 = IRSensor_data[FR_S];
+        g_value_2 = IRSensor_data[R_S];
+        g_value_3 = IRSensor_data[L_S];
+        g_value_4 = IRSensor_data[FL_S];
+    }
 }

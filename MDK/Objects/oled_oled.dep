@@ -1,9 +1,9 @@
 Dependencies for Project 'oled', Target 'oled': (DO NOT MODIFY !)
 CompilerVersion: 6140000::V6.14::ARMCLANG
 F (..\USER\font.h)(0x67DFD8F3)()
-F (..\USER\oled.h)(0x67E3A0CB)()
-F (..\USER\i2c.h)(0x67DE418B)()
-F (..\USER\button.h)(0x67F50F18)()
+F (..\USER\oled.h)(0x680BC616)()
+F (..\USER\i2c.h)(0x680B9BC5)()
+F (..\USER\button.h)(0x67F7D935)()
 F (..\USER\menu.h)(0x67F5527F)()
 F (..\USER\debug.h)(0x67DE4298)()
 F (..\USER\define.h)(0x67F4A619)()
@@ -15,7 +15,7 @@ F (..\USER\uart.h)(0x67E05A63)()
 F (..\USER\bno055.h)(0x67E3C7BB)()
 F (..\USER\i2c_2.h)(0x67E3C7BB)()
 F (..\USER\MPU6050.h)(0x67E05A63)()
-F (..\USER\main.c)(0x67F4B455)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/main.o -MD)
+F (..\USER\main.c)(0x680BC7B0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/main.o -MD)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)
@@ -37,9 +37,9 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\button.h)(0x67F50F18)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\button.h)(0x67F7D935)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\menu.h)(0x67F5527F)
@@ -49,8 +49,8 @@ I (..\USER\i2c_2.h)(0x67E3C7BB)
 I (..\USER\irsensor.h)(0x67E05A63)
 I (..\USER\nvic.h)(0x67E05A63)
 I (..\USER\MPU6050.h)(0x67E05A63)
-F (..\USER\oled.c)(0x67E3A0CC)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/oled.o -MD)
-I (..\USER\oled.h)(0x67E3A0CB)
+F (..\USER\oled.c)(0x680BC5EF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/oled.o -MD)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)
@@ -72,8 +72,8 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\button.h)(0x67F50F18)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\button.h)(0x67F7D935)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\menu.h)(0x67F5527F)
@@ -105,8 +105,8 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
-F (..\USER\i2c.c)(0x67DFD438)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/i2c.o -MD)
-I (..\USER\i2c.h)(0x67DE418B)
+F (..\USER\i2c.c)(0x680B9C2A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/i2c.o -MD)
+I (..\USER\i2c.h)(0x680B9BC5)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)
@@ -128,8 +128,8 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\button.h)(0x67F50F18)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\button.h)(0x67F7D935)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\menu.h)(0x67F5527F)
@@ -140,7 +140,7 @@ I (..\USER\irsensor.h)(0x67E05A63)
 I (..\USER\nvic.h)(0x67E05A63)
 I (..\USER\MPU6050.h)(0x67E05A63)
 F (..\USER\button.c)(0x67F50ED4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/button.o -MD)
-I (..\USER\button.h)(0x67F50F18)
+I (..\USER\button.h)(0x67F7D935)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)
@@ -162,8 +162,8 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\menu.h)(0x67F5527F)
@@ -173,7 +173,7 @@ I (..\USER\i2c_2.h)(0x67E3C7BB)
 I (..\USER\irsensor.h)(0x67E05A63)
 I (..\USER\nvic.h)(0x67E05A63)
 I (..\USER\MPU6050.h)(0x67E05A63)
-F (..\USER\debug.c)(0x67DF7AD7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/debug.o -MD)
+F (..\USER\debug.c)(0x67FE111F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/debug.o -MD)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
@@ -196,9 +196,9 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\button.h)(0x67F50F18)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\button.h)(0x67F7D935)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\menu.h)(0x67F5527F)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x5ED619F4)
@@ -207,7 +207,7 @@ I (..\USER\i2c_2.h)(0x67E3C7BB)
 I (..\USER\irsensor.h)(0x67E05A63)
 I (..\USER\nvic.h)(0x67E05A63)
 I (..\USER\MPU6050.h)(0x67E05A63)
-F (..\USER\menu.c)(0x67F55F07)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/menu.o -MD)
+F (..\USER\menu.c)(0x680BC866)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/menu.o -MD)
 I (..\USER\menu.h)(0x67F5527F)
 I (..\USER\define.h)(0x67F4A619)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
@@ -230,9 +230,9 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\button.h)(0x67F50F18)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\button.h)(0x67F7D935)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (C:\Keil_v5\ARM\ARMCLANG\include\math.h)(0x5ED619F4)
@@ -285,9 +285,9 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
 I (..\USER\define.h)(0x67F4A619)
 I (..\USER\delay.h)(0x67DF79F5)
-I (..\USER\i2c.h)(0x67DE418B)
-I (..\USER\button.h)(0x67F50F18)
-I (..\USER\oled.h)(0x67E3A0CB)
+I (..\USER\i2c.h)(0x680B9BC5)
+I (..\USER\button.h)(0x67F7D935)
+I (..\USER\oled.h)(0x680BC616)
 I (..\USER\uart.h)(0x67E05A63)
 I (..\USER\debug.h)(0x67DE4298)
 I (..\USER\menu.h)(0x67F5527F)
@@ -317,7 +317,7 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_tim.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\stm32f10x_usart.h)(0x61AD876E)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPeriph_Driver\inc\misc.h)(0x61AD876E)
-F (..\USER\uart.c)(0x67E05A63)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/uart.o -MD)
+F (..\USER\uart.c)(0x67F69F05)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/uart.o -MD)
 I (..\USER\uart.h)(0x67E05A63)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)
@@ -364,7 +364,7 @@ I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\StdPer
 I (..\USER\maths.h)(0x67E05A63)
 I (..\USER\i2c_2.h)(0x67E3C7BB)
 I (..\USER\delay.h)(0x67DF79F5)
-F (..\USER\i2c_2.c)(0x67E64AFF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/i2c_2.o -MD)
+F (..\USER\i2c_2.c)(0x680B9C13)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-3 -O1 -ffunction-sections -w-I./RTE/Device/STM32F103C8-I./RTE/_oled-IC:/Users/thang/AppData/Local/Arm/Packs/ARM/CMSIS/5.7.0/CMSIS/Core/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/Include-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/Device/StdPeriph_Driver/inc-IC:/Users/thang/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.1/RTE_Driver-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F10X_MD -D_RTE_-o ./objects/i2c_2.o -MD)
 I (..\USER\i2c_2.h)(0x67E3C7BB)
 I (C:\Users\thang\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include\stm32f10x.h)(0x61AD876E)
 I (RTE\_oled\RTE_Components.h)(0x67E3DDDE)

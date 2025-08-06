@@ -8,13 +8,12 @@
 #define BUTTON_2    GPIO_Pin_4
 #define BUTTON_3    GPIO_Pin_5
 
-// Di chuyển từ menu.h sang button.h
 #define DEBOUNCE_DELAY       50    // Button debounce time in milliseconds
 #define LONG_PRESS_DURATION  500   // Long press detection time in milliseconds
 
 typedef enum {
     PRESSED = 0,
-    RELEASED = 1
+    RELEASED = 1,
 } ButtonState;
 
 typedef struct {

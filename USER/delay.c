@@ -30,11 +30,13 @@ uint32_t millis(void){
 uint32_t micros(void){
 	return us;
 }
-void delay_ms(uint32_t time_delay){
+void delay_ms(uint32_t time_delay)
+{
 	uint32_t cur_time = millis();
 	while(millis() - cur_time < time_delay);
 }
-void delay_us(uint32_t time_delay){
+void delay_us(uint32_t time_delay)
+{
 	uint32_t cur_time = micros();
 	while(micros() - cur_time < time_delay);
 }

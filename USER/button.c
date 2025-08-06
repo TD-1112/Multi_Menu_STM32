@@ -19,14 +19,17 @@ void Button_Init(void)
 
 ButtonState Button_Read(uint16_t button)
 {
-    if(GPIO_ReadInputDataBit(BUTTON_PORT, button) == 0) {
+    if(GPIO_ReadInputDataBit(BUTTON_PORT, button) == 0) 
+    {
         return PRESSED;
-    } else {
+    } 
+    else 
+    {
         return RELEASED;
     }
 }
 
-// Di chuyển từ menu.c sang button.c
+
 void Check_Status(void)
 {
     static uint32_t last_debounce_time[3] = {0, 0, 0}; 
@@ -53,13 +56,16 @@ void Check_Status(void)
         }
         
         // If enough time has passed since the last change
-        if ((millis() - last_debounce_time[i]) > DEBOUNCE_DELAY) {
+        if ((millis() - last_debounce_time[i]) > DEBOUNCE_DELAY) 
+        {
             // If the button state has changed
-            if (reading[i] != button_state[i]) {
+            if (reading[i] != button_state[i]) 
+            {
                 button_state[i] = reading[i];
                 
                 // Only trigger on button press (when state goes from 1 to 0)
-                if (button_state[i] == 0) {
+                if (button_state[i] == 0) 
+                {
                     // Set the appropriate flag
                     if (i == 0) flag_stt.flag_1 = 1;
                     if (i == 1) flag_stt.flag_2 = 1;
@@ -83,20 +89,27 @@ void Reset_Status(void)
 uint8_t Check_Long_Press(uint8_t button_state, uint32_t current_time, 
                         uint32_t *button_press_start, uint8_t *is_button_held)
 {
-    if(button_state == 0) { // Button is pressed
-        if(!(*is_button_held)) {
+    if(button_state == 0) 
+    { // Button is pressed
+        if(!(*is_button_held)) 
+        {
             // Button just pressed, record start time
             *button_press_start = current_time;
             *is_button_held = 1;
             return 0;
-        } else {
+        } 
+        else 
+        {
             // Check if button has been held long enough
             uint32_t elapsed = current_time - *button_press_start;
-            if(elapsed >= LONG_PRESS_DURATION) {
+            if(elapsed >= LONG_PRESS_DURATION) 
+            {
                 return 1; // Long press detected
             }
         }
-    } else {
+    } 
+    else 
+    {
         // Button released
         *is_button_held = 0;
     }
